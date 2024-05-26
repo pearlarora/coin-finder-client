@@ -1,0 +1,366 @@
+// import Table from "@mui/joy/Table";
+import React, { useEffect, useState } from "react";
+import {
+  coinTableHeader,
+  lighter,
+  pagination,
+  pinkShade,
+  primary,
+  secondary,
+  greyish,
+  tertiary,
+  translucent,
+  base_url,
+} from "../Constants.js";
+import {
+  Button,
+  Container,
+  IconButton,
+  LinearProgress,
+  Link,
+  PaginationItem,
+  Paper,
+  Stack,
+  Table,
+  TableBody,
+  TableCell,
+  TableContainer,
+  TableHead,
+  TableRow,
+} from "@mui/material";
+// import Pagination from "@mui/material/Pagination";
+import { useNavigate } from "react-router-dom";
+import RocketLaunchIcon from "@mui/icons-material/RocketLaunch.js";
+import axios from "axios";
+// import coinIcons from "../Assets/coinIcons/";
+// import icon from "../Assets/coinIcons/2024-05-18T18:31:32.262Zyt.png";
+// import RocketLaunchTwoToneIcon from "@mui/icons-material/RocketLaunchTwoTone";
+// import { KeyboardArrowLeft } from "@mui/icons-material";
+// import { CoinList } from "../Config/api";
+// import axios from "axios";
+
+function CoinTable({ heading, coins, setCoins, loading }) {
+  const navigate = useNavigate();
+  // console.log("here coins", coins);
+  const promoted = heading === "Promoted Coins";
+  const [itemsToShow, setItemsToShow] = useState(0);
+
+  useEffect(() => {
+    const initialRows = promoted ? coins.length + 2 : pagination;
+    setItemsToShow(initialRows);
+  }, [coins, promoted]);
+
+  const sortedCoins = coins.sort((a, b) => b.vote - a.vote);
+
+  const importAll = (r) => {
+    let images = {};
+    r.keys().forEach((key) => {
+      images[key] = r(key);
+    });
+    return images;
+  };
+
+  // const coinIcons = importAll(
+  //   require.context("../Assets/coinIcons", false, /\.(png|jpe?g|svg)$/)
+  // );
+
+  const networkIcons = importAll(
+    require.context("../Assets/networks", false, /\.(png|jpe?g|svg)$/)
+  );
+
+  // const fetchLogo = async (logo) => {
+  //   try {
+  //     const logoRef = storage.ref(`logos/${logo}`);
+  //     const logoURL = await logoRef.getDownloadURL();
+  //     return logoURL;
+  //   } catch (error) {
+  //     console.error("Failed to fetch logo:", error);
+  //     return null;
+  //   }
+  // };
+
+  // // Display the logo image
+  // const renderLogo = async (logo) => {
+  //   const logoURL = await fetchLogo(logo);
+  //   return (
+  //     <img
+  //       src={logoURL}
+  //       alt="Coin Icon"
+  //       height={50}
+  //       width={50}
+  //       style={{ borderRadius: "50%" }}
+  //     />
+  //   );
+  // };
+
+  const handleSeeMore = () => {
+    setItemsToShow(itemsToShow + pagination);
+  };
+
+  const handleVote = async (coinId) => {
+    try {
+      await axios.post(`${base_url}coins/${coinId}/vote`);
+      const updatedCoins = coins.map((coin) => {
+        if (coin._id === coinId) {
+          // Increment the vote count
+          return { ...coin, vote: coin.vote + 1 };
+        }
+        return coin;
+      });
+      setCoins(updatedCoins);
+    } catch (error) {
+      console.error("Failed to toggle vote:", error);
+    }
+  };
+
+  const handleRowClick = (coinId) => {
+    navigate(`/coin/${coinId}`);
+  };
+
+  return (
+    <div>
+      {/* <img
+        // src={`${coinIcons}/bitcoin.svg.png`}
+        src={coinIcons["./2024-05-18T18:31:32.262Zyt.png"]}
+        // src={`../Assets/coinIcons/2024-05-18T18:31:32.262Zyt.png`}
+        alt="alt text"
+      /> */}
+      <Container maxWidth="xl" sx={{ overflowX: "hidden" }}>
+        <TableContainer
+          component={Paper}
+          sx={{
+            backgroundColor: tertiary,
+            border: promoted ? "1px solid #4252cb" : "null",
+            boxShadow: promoted ? "0 0 20px #4252cb" : "null",
+            padding: "12px 0 0 0",
+            color: "white",
+          }}
+        >
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "space-between",
+              alignItems: "center",
+              padding: "15px 50px",
+              fontWeight: "500",
+              letterSpacing: "1.2px",
+            }}
+          >
+            <h2>{heading}</h2>
+            <Link
+              href="/"
+              style={{
+                color: pinkShade,
+                fontWeight: "600",
+                letterSpacing: "1px",
+                fontSize: "1.1rem",
+              }}
+            >
+              {promoted ? "Promote your coin!" : ""}
+            </Link>
+          </div>
+          {loading ? (
+            <LinearProgress />
+          ) : (
+            <Table>
+              <TableHead
+                sx={{
+                  backgroundColor: translucent,
+                  borderBottom: "2px solid #000",
+                  height: "35px",
+                }}
+              >
+                <TableRow>
+                  {coinTableHeader.map((head) => (
+                    <TableCell
+                      style={
+                        head === "Coin"
+                          ? { width: "25%", padding: "0 0 0 3vw" }
+                          : {}
+                      }
+                      sx={{
+                        color: "white",
+                        fontSize: "0.9rem",
+                        fontWeight: "bold",
+                      }}
+                      key={head}
+                      align={head === "Coin" ? "left" : "center"}
+                    >
+                      {head}
+                    </TableCell>
+                  ))}
+                </TableRow>
+              </TableHead>
+              <TableBody>
+                {sortedCoins.slice(0, itemsToShow).map((coin, index) => {
+                  // const logoPath = `../Assets/coinIcons/${coin.logo}`;
+                  // console.log("Coin: " + coin.network);
+                  // const logoPath = coinIcons[`./${coin.logo}`];
+                  const networkPath = networkIcons[`./${coin.network}.png`];
+                  // console.log("Network Path:", networkPath); // Debugging line to check path
+                  return (
+                    <TableRow
+                      key={index}
+                      sx={{
+                        borderBottom: "2px solid #000",
+                        ":hover": {
+                          backgroundColor: lighter,
+                          cursor: "pointer",
+                        },
+                      }}
+                      onClick={() => handleRowClick(coin._id)}
+                    >
+                      {/* {console.log(pagination)}
+                    {console.log(coin)} */}
+
+                      <TableCell
+                        sx={{
+                          color: "white",
+                          padding: "0 0 0 3vw",
+                          fontSize: "1.2rem",
+                        }}
+                      >
+                        <div
+                          style={{
+                            display: "flex",
+                            gap: "10px",
+                            alignItems: "center",
+                            // justifyContent: "center",
+                          }}
+                        >
+                          <img
+                            src={coin.logo}
+                            alt="Coin Icon"
+                            height={50}
+                            width={50}
+                            style={{ borderRadius: "50%" }}
+                          />
+                          {/* {coin.logo && renderLogo(coin.logo)} */}
+
+                          <div
+                            style={{
+                              display: "flex",
+                              flexDirection: "column",
+                            }}
+                          >
+                            <h4>{coin.name}</h4>
+                            <p
+                              style={{ fontSize: "0.8rem", marginTop: "-5px" }}
+                            >
+                              {coin.symbol}
+                            </p>
+                          </div>
+                        </div>
+                      </TableCell>
+                      <TableCell
+                        sx={{
+                          color: "white",
+                          fontSize: "1rem",
+                        }}
+                        align="center"
+                      >
+                        <div
+                          style={{
+                            display: "flex",
+                            gap: "10px",
+                            alignItems: "center",
+                            justifyContent: "center",
+                          }}
+                        >
+                          <img
+                            src={networkPath}
+                            alt="Network Icon"
+                            height={35}
+                            width={35}
+                            style={{ borderRadius: "50%" }}
+                          />
+                          <span>{coin.network}</span>
+                        </div>
+                      </TableCell>
+                      <TableCell
+                        sx={{ color: "white", fontSize: "1rem" }}
+                        align="center"
+                      >
+                        {coin.marketCapUsd ? coin.marketCapUsd : "-"}
+                      </TableCell>
+                      <TableCell
+                        sx={{
+                          fontSize: "1rem",
+                          fontWeight: "600",
+                          textShadow: "1px 1px 20px black",
+                        }}
+                        style={
+                          coin.hours24 > 0
+                            ? { color: "green" }
+                            : { color: "red" }
+                        }
+                        align="center"
+                      >
+                        <span>{coin.hours24 > 0 ? "+" : ""}</span>
+                        {coin.hours24}
+                        <span>%</span>
+                      </TableCell>
+                      <TableCell
+                        sx={{ color: "white", fontSize: "1rem" }}
+                        align="center"
+                      >
+                        {coin.launchDateKnown ? coin.launchDate : "-"}
+                      </TableCell>
+                      <TableCell
+                        sx={{
+                          color: "white",
+                          fontSize: "1rem",
+                          fontWeight: "500",
+                        }}
+                        align="center"
+                      >
+                        {coin.vote}
+                      </TableCell>
+                      <TableCell align="center">
+                        {/* <Button
+                        variant="contained"
+                        size="small"
+                        // sx={{ backgroundColor: secondary }}
+                      > */}
+                        {/* <RocketLaunchIcon /> */}
+                        {/* <RocketLaunchTwoToneIcon /> */}
+                        {/* &nbsp;{coin.votes} */}
+                        {/* </Button> */}
+                        <Button
+                          variant="contained"
+                          size="small"
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            handleVote(coin._id);
+                          }} // Modified the Button component
+                        >
+                          <RocketLaunchIcon />
+                        </Button>
+                      </TableCell>
+                    </TableRow>
+                  );
+                })}
+              </TableBody>
+            </Table>
+          )}
+        </TableContainer>
+        {!promoted && coins.length > itemsToShow ? (
+          <Container style={{ display: "flex", justifyContent: "center" }}>
+            <Button
+              variant="contained"
+              color="primary"
+              onClick={handleSeeMore}
+              style={{ margin: "20px" }}
+            >
+              See More
+            </Button>
+          </Container>
+        ) : (
+          <></>
+        )}
+      </Container>
+    </div>
+  );
+}
+
+export default CoinTable;
