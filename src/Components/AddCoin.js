@@ -330,9 +330,7 @@ const AddCoin = ({ handleClose }) => {
                 sx={{ marginTop: "15px" }}
               >
                 <MenuItem value="BSC">Binance (BSC)</MenuItem>
-                <MenuItem value="ETH">
-                  Ethereum (ETH)
-                </MenuItem>
+                <MenuItem value="ETH">Ethereum (ETH)</MenuItem>
                 <MenuItem value="MATIC">Polygon (MATIC)</MenuItem>
                 <MenuItem value="SOL">Solana (SOL)</MenuItem>
                 <MenuItem value="FTM">Fantom (FTM)</MenuItem>
@@ -414,6 +412,7 @@ const AddCoin = ({ handleClose }) => {
                 variant="filled"
                 fullWidth
                 required
+                size="small"
                 sx={{ marginTop: "30px" }}
               />
               <TextField
@@ -427,6 +426,7 @@ const AddCoin = ({ handleClose }) => {
                 variant="filled"
                 fullWidth
                 required
+                size="small"
                 sx={{ marginTop: "30px" }}
               />
             </Grid>
@@ -439,6 +439,7 @@ const AddCoin = ({ handleClose }) => {
                 variant="filled"
                 fullWidth
                 required
+                size="small"
               />
               <TextField
                 label="Telegram"
@@ -448,6 +449,7 @@ const AddCoin = ({ handleClose }) => {
                 variant="filled"
                 fullWidth
                 required
+                size="small"
                 sx={{ marginTop: "30px" }}
               />
               <TextField
@@ -457,6 +459,7 @@ const AddCoin = ({ handleClose }) => {
                 onChange={handleChange}
                 variant="filled"
                 fullWidth
+                size="small"
                 sx={{ marginTop: "30px" }}
               />
               <TextField
@@ -466,6 +469,7 @@ const AddCoin = ({ handleClose }) => {
                 onChange={handleChange}
                 variant="filled"
                 fullWidth
+                size="small"
                 sx={{ marginTop: "30px" }}
               />
               <Divider
@@ -485,6 +489,7 @@ const AddCoin = ({ handleClose }) => {
                 variant="filled"
                 fullWidth
                 required
+                size="small"
                 sx={{ marginTop: "30px" }}
               />
               <TextField
@@ -496,6 +501,7 @@ const AddCoin = ({ handleClose }) => {
                 variant="filled"
                 fullWidth
                 required
+                size="small"
                 sx={{ marginTop: "30px" }}
               />
               <div
