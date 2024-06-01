@@ -37,19 +37,23 @@ const Footer = () => {
             onClick={() => navigate("/")}
             style={{
               fontWeight: "bold",
-              fontSize: "2rem",
+              fontSize: "1.3rem",
               cursor: "pointer",
               color: "white",
               display: "flex",
               alignItems: "center",
             }}
           >
-            <img src={websiteLogo} alt={website_name} />
+            <img
+              src={websiteLogo}
+              alt={website_name}
+              style={{ height: "40px" }}
+            />
             {website_name}
           </Typography>
           <Typography
             style={{
-              fontSize: "1.2rem",
+              fontSize: "1rem",
               color: darker,
             }}
           >
@@ -67,11 +71,11 @@ const Footer = () => {
         >
           <Typography
             style={{
-              fontSize: "1.2rem",
+              fontSize: "1rem",
               display: "flex",
               justifyContent: "center",
               alignItems: "center",
-              margin: "0  0 30px -40px",
+              margin: "0  0 80px -40px",
               color: darker,
             }}
           >

@@ -6,10 +6,10 @@ function Socials() {
   return (
     <div class="social-btns">
       <a class="btn twitter" href="#">
-        <TwitterIcon fontSize="large" className="twitterIcon" />
+        <TwitterIcon className="twitterIcon" />
       </a>
       <a class="btn telegram" href="https://t.me/coinfinderccofficial">
-        <TelegramIcon fontSize="large" className="telegramIcon" />
+        <TelegramIcon className="telegramIcon" />
       </a>
     </div>
   );

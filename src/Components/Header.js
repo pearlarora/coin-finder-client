@@ -1,3 +1,5 @@
+// import React, { useState, useEffect } from "react";
+// import { useNavigate } from "react-router-dom";
 // import {
 //   AppBar,
 //   Button,
@@ -14,9 +16,6 @@
 //   Box,
 // } from "@mui/material";
 // import SearchIcon from "@mui/icons-material/Search.js";
-// // import CloseIcon from "@mui/icons-material/Close";
-// import React, { useState } from "react";
-// import { useNavigate } from "react-router-dom";
 // import {
 //   darker,
 //   greyish,
@@ -38,44 +37,54 @@
 //   backgroundColor: greyish,
 //   color: tertiary,
 //   padding: "50px",
-//   // borderRadius: "8px",
 //   boxShadow: `0 2px 10px ${darker}`,
 // };
 
 // function Header() {
 //   const navigate = useNavigate();
-
 //   const [searchQuery, setSearchQuery] = useState("");
+//   const [open, setOpen] = useState(false);
+//   const [address, setAddress] = useState("");
 
-//   const [open, setOpen] = React.useState(false);
 //   const handleOpen = () => setOpen(true);
 //   const handleClose = () => setOpen(false);
 
-//   const handleSearch = async (e) => {
-//     e.preventDefault();
-//     try {
-//       const response = await fetch(
-//         `https://api.geckoterminal.com/api/v2/search/pools?query=${searchQuery}`
-//       );
-//       const responseData = await response.json(); // Parse the JSON response
-//       console.log(responseData);
-//       if (responseData && responseData.data && responseData.data.length > 0) {
-//         const firstResult = responseData.data[0];
-//         console.log(firstResult);
-//         const address = firstResult.attributes?.address;
-//         console.log("address: ", address);
-//         if (address) {
-//           console.log("navigate to address");
-//           navigate(`/search/${address}`);
+//   useEffect(() => {
+//     const fetchData = async () => {
+//       try {
+//         const response = await fetch(
+//           `https://api.geckoterminal.com/api/v2/search/pools?query=${searchQuery}`
+//         );
+//         const responseData = await response.json();
+//         if (responseData && responseData.data && responseData.data.length > 0) {
+//           const firstResult = responseData.data[0];
+//           const address = firstResult.attributes?.address;
+//           if (address) {
+//             console.log(address);
+//             setAddress(address);
+//           } else {
+//             alert("No matching data found");
+//           }
 //         } else {
-//           console.log("Address not found");
+//           alert("No matching data found");
 //         }
-//       } else {
-//         alert("No matching data found");
+//       } catch (error) {
+//         console.error("Error fetching data:", error);
+//         alert("Failed to search. Please try again.");
 //       }
-//     } catch (error) {
-//       console.error("Error fetching data:", error);
-//       alert("Failed to search. Please try again.");
+//     };
+
+//     if (searchQuery) {
+//       fetchData();
+//     }
+//   }, [searchQuery]);
+
+//   const handleSearch = (e) => {
+//     e.preventDefault();
+//     if (searchQuery) {
+//       navigate(`/search/${address}`);
+//     } else {
+//       alert("Please enter a search query.");
 //     }
 //   };
 
@@ -94,20 +103,27 @@
 //             display: "flex",
 //             justifyContent: "space-between",
 //             alignItems: "center",
-//             height: "100px",
+//             height: "70px",
 //           }}
 //         >
 //           <Typography
 //             onClick={() => navigate("/")}
 //             style={{
 //               fontWeight: "bold",
-//               fontSize: "1.8rem",
+//               fontSize: "1.3rem",
 //               cursor: "pointer",
 //               marginTop: "10px",
 //               color: "white",
+//               display: "flex",
+//               alignItems: "center",
 //             }}
 //           >
-//             <img src={websiteLogo} alt={website_name} />
+//             <img
+//               src={websiteLogo}
+//               alt={website_name}
+//               style={{ height: "40px" }}
+//             />
+//             &nbsp;{website_name}
 //           </Typography>
 //           <form style={{ display: "flex", gap: 5 }}>
 //             <TextField
@@ -116,14 +132,16 @@
 //               label="Search"
 //               variant="filled"
 //               size="small"
-//               style={{ width: "20vw", backgroundColor: greyish }}
+//               style={{
+//                 width: "20vw",
+//                 backgroundColor: greyish,
+//               }}
 //             />
 //             <IconButton
 //               type="submit"
 //               onClick={handleSearch}
 //               color="primary"
 //               aria-label="search"
-//               size="large"
 //               style={{ marginLeft: -55 }}
 //             >
 //               <SearchIcon />
@@ -137,62 +155,28 @@
 //               <Box sx={style}>
 //                 <div
 //                   style={{
-//                     // display: "grid",
-//                     // gridTemplateColumns: "1fr auto",
 //                     display: "flex",
 //                     justifyContent: "space-between",
 //                     alignItems: "center",
 //                     color: primary,
-//                     // margin: "5px",
 //                   }}
 //                 >
 //                   <h1 style={{ textAlign: "center", fontWeight: "400" }}>
 //                     Add New Coin
 //                   </h1>
-//                   {/* <div>
-//                     <Button
-//                       variant="contained"
-//                       color="tertiary"
-//                       style={{ marginLeft: "10px", color: "white" }}
-//                       onClick={handleClose}
-//                     >
-//                       Close
-//                     </Button>
-//                   </div> */}
-//                   {/* <IconButton
-//                     onClick={handleClose}
-//                     size="large"
-//                     color="primary"
-//                     style={{ justifySelf: "end" }}
-//                   >
-//                     <CloseIcon fontSize="inherit" />
-//                   </IconButton> */}
 //                 </div>
 //                 <AddCoin handleClose={handleClose} />
 //               </Box>
 //             </Modal>
-//             <Button variant="contained" color="tertiary">
+//             <Button
+//               variant="contained"
+//               color="tertiary"
+//               href="https://t.me/coinfinderccofficial"
+//               target="_blank"
+//             >
 //               Advertise
 //             </Button>
 //           </div>
-//           {/* TODO: Google Translate */}
-//           {/* <div id="google_translate_element"></div> */}
-
-//           {/* <FormControl
-//             variant="filled"
-//             sx={{
-//               marginRight: "28px",
-//               minWidth: 120,
-//               backgroundColor: greyish,
-//               color: primary,
-//             }}
-//           >
-//             <InputLabel>Currency</InputLabel>
-//             <Select defaultValue={"INR"} sx={{ width: 120, height: 50 }}>
-//               <MenuItem value={"USD"}>USD</MenuItem>
-//               <MenuItem value={"INR"}>INR</MenuItem>
-//             </Select>
-//           </FormControl> */}
 //         </Container>
 //       </AppBar>
 //     </div>
@@ -205,30 +189,35 @@ import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import {
   AppBar,
+  Box,
   Button,
   Container,
-  FormControl,
+  CssBaseline,
+  Divider,
+  Drawer,
   IconButton,
-  InputLabel,
-  MenuItem,
-  Select,
+  List,
+  ListItem,
+  ListItemButton,
+  ListItemText,
+  Modal,
   TextField,
   Toolbar,
   Typography,
-  Modal,
-  Box,
 } from "@mui/material";
+import MenuIcon from "@mui/icons-material/Menu";
 import SearchIcon from "@mui/icons-material/Search.js";
 import {
   darker,
   greyish,
   primary,
   tertiary,
-  translucent,
   website_name,
 } from "../Constants.js";
 import { websiteLogo } from "../Constants.js";
 import AddCoin from "./AddCoin.js";
+
+const drawerWidth = 240;
 
 const style = {
   position: "absolute",
@@ -243,14 +232,20 @@ const style = {
   boxShadow: `0 2px 10px ${darker}`,
 };
 
-function Header() {
+function Header(props) {
+  const { window } = props;
   const navigate = useNavigate();
   const [searchQuery, setSearchQuery] = useState("");
   const [open, setOpen] = useState(false);
   const [address, setAddress] = useState("");
+  const [mobileOpen, setMobileOpen] = useState(false);
 
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
+
+  const handleDrawerToggle = () => {
+    setMobileOpen(!mobileOpen);
+  };
 
   useEffect(() => {
     const fetchData = async () => {
@@ -291,6 +286,73 @@ function Header() {
     }
   };
 
+  const drawer = (
+    <Box sx={{ textAlign: "center" }}>
+      <Typography variant="h6" sx={{ my: 2 }}>
+        {website_name}
+      </Typography>
+      <Divider />
+      <form
+        style={{
+          display: "flex",
+          flexDirection: "column",
+          // gap: 10,
+          padding: 16,
+        }}
+      >
+        <TextField
+          value={searchQuery}
+          onChange={(e) => setSearchQuery(e.target.value)}
+          label="Search"
+          variant="filled"
+          size="small"
+          style={{
+            width: "100%",
+            backgroundColor: greyish,
+          }}
+        />
+        <Button
+          type="submit"
+          onClick={handleSearch}
+          variant="contained"
+          color="primary"
+          style={{ marginTop: 8 }}
+        >
+          Search
+        </Button>
+      </form>
+      <Divider />
+      <List>
+        <ListItem disablePadding>
+          <Button
+            variant="contained"
+            fullWidth
+            onClick={handleOpen}
+            sx={{ margin: 1 }}
+          >
+            Add Coin
+          </Button>
+        </ListItem>
+        <ListItem disablePadding>
+          <Button
+            variant="contained"
+            fullWidth
+            color="tertiary"
+            component="a"
+            href="https://t.me/coinfinderccofficial"
+            target="_blank"
+            sx={{ margin: 1, color: "white" }}
+          >
+            Advertise
+          </Button>
+        </ListItem>
+      </List>
+    </Box>
+  );
+
+  const container =
+    window !== undefined ? () => window().document.body : undefined;
+
   return (
     <div
       style={{
@@ -299,72 +361,77 @@ function Header() {
         boxShadow: "0 10px 80px #232531",
       }}
     >
+      <CssBaseline />
       <AppBar color="transparent" position="static">
         <Container
           maxWidth="xl"
-          style={{
+          sx={{
             display: "flex",
             justifyContent: "space-between",
             alignItems: "center",
-            height: "100px",
+            height: "70px",
           }}
         >
-          <Typography
-            onClick={() => navigate("/")}
-            style={{
-              fontWeight: "bold",
-              fontSize: "2rem",
-              cursor: "pointer",
-              marginTop: "10px",
-              color: "white",
-              display: "flex",
-              alignItems: "center",
+          <Box sx={{ display: "flex", alignItems: "center", flex: 1 }}>
+            <Typography
+              onClick={() => navigate("/")}
+              sx={{
+                fontWeight: "bold",
+                fontSize: "1.3rem",
+                cursor: "pointer",
+                color: "white",
+                display: "flex",
+                alignItems: "center",
+              }}
+            >
+              <img
+                src={websiteLogo}
+                alt={website_name}
+                style={{ height: "40px" }}
+              />
+              &nbsp;{website_name}
+            </Typography>
+          </Box>
+          <Box
+            sx={{
+              display: { xs: "none", sm: "flex" },
+              flex: 1,
+              justifyContent: "center",
             }}
           >
-            <img src={websiteLogo} alt={website_name} />
-            {website_name}
-          </Typography>
-          <form style={{ display: "flex", gap: 5 }}>
-            <TextField
-              value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
-              label="Search"
-              variant="filled"
-              size="small"
-              style={{ width: "20vw", backgroundColor: greyish }}
-            />
-            <IconButton
-              type="submit"
-              onClick={handleSearch}
-              color="primary"
-              aria-label="search"
-              size="large"
-              style={{ marginLeft: -55 }}
-            >
-              <SearchIcon />
-            </IconButton>
-          </form>
-          <div style={{ display: "flex", gap: 20 }}>
+            <form style={{ display: "flex", gap: 5 }} onSubmit={handleSearch}>
+              <TextField
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                label="Search"
+                variant="filled"
+                size="small"
+                sx={{
+                  width: "20vw",
+                  backgroundColor: greyish,
+                }}
+              />
+              <IconButton
+                type="submit"
+                color="primary"
+                aria-label="search"
+                sx={{ marginLeft: -5 }}
+              >
+                <SearchIcon />
+              </IconButton>
+            </form>
+          </Box>
+          <Box
+            sx={{
+              display: { xs: "none", sm: "flex" },
+              flex: 1,
+              justifyContent: "flex-end",
+              gap: 2,
+            }}
+          >
             <Button variant="contained" onClick={handleOpen}>
               Add Coin
             </Button>
-            <Modal open={open} disableEnforceFocus>
-              <Box sx={style}>
-                <div
-                  style={{
-                    display: "flex",
-                    justifyContent: "space-between",
-                    alignItems: "center",
-                    color: primary,
-                  }}
-                >
-                  <h1 style={{ textAlign: "center", fontWeight: "400" }}>
-                    Add New Coin
-                  </h1>
-                </div>
-                <AddCoin handleClose={handleClose} />
-              </Box>
-            </Modal>
             <Button
               variant="contained"
               color="tertiary"
@@ -373,9 +440,60 @@ function Header() {
             >
               Advertise
             </Button>
-          </div>
+          </Box>
+          <IconButton
+            color="inherit"
+            aria-label="open drawer"
+            edge="start"
+            onClick={handleDrawerToggle}
+            sx={{
+              display: { sm: "none" },
+              marginLeft: "auto",
+              backgroundColor: "transparent",
+            }}
+          >
+            <MenuIcon />
+          </IconButton>
         </Container>
       </AppBar>
+      <Box component="nav">
+        <Drawer
+          container={container}
+          variant="temporary"
+          open={mobileOpen}
+          onClose={handleDrawerToggle}
+          ModalProps={{
+            keepMounted: true, // Better open performance on mobile.
+          }}
+          sx={{
+            display: { xs: "block", sm: "none" },
+            "& .MuiDrawer-paper": {
+              boxSizing: "border-box",
+              width: drawerWidth,
+              backgroundColor: darker,
+            },
+          }}
+        >
+          {drawer}
+        </Drawer>
+      </Box>
+      <Modal open={open} disableEnforceFocus>
+        <Box sx={style}>
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "space-between",
+              alignItems: "center",
+              color: primary,
+            }}
+          >
+            <h1 style={{ textAlign: "center", fontWeight: "400" }}>
+              Add New Coin
+            </h1>
+          </div>
+          <AddCoin handleClose={handleClose} />
+        </Box>
+      </Modal>
     </div>
   );
 }

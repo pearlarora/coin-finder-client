@@ -12,6 +12,7 @@ import {
   FormControlLabel,
   Divider,
   Chip,
+  useMediaQuery,
 } from "@mui/material";
 // import {
 //   LocalizationProvider,
@@ -36,6 +37,8 @@ import "firebase/compat/storage";
 import { getDownloadURL, uploadBytes } from "@firebase/storage";
 
 const AddCoin = ({ handleClose }) => {
+  const isMobile = useMediaQuery((theme) => theme.breakpoints.down("sm"));
+
   const [newCoin, setNewCoin] = useState({
     logo: null,
     name: "",
@@ -130,55 +133,52 @@ const AddCoin = ({ handleClose }) => {
         // await uploadBytes(storageRef, newCoin.logo);
         // const logoURL = await getDownloadURL(storageRef);
 
-        const updatedCoin = {
+        setNewCoin({
           ...newCoin,
           marketCapUsd,
           hours24,
           // logo: logoURL,
-        };
-        console.log(
-          "hello3: " + updatedCoin.marketCapUsd + " " + updatedCoin.hours24
-        );
-
-        console.log("hello4: " + newCoin);
-        await axios.post(`${base_url}`, updatedCoin, {
-          headers: {
-            "Content-Type": "multipart/form-data",
-          },
         });
-        console.log("hello5: " + newCoin);
-        handleClose();
-
-        setNewCoin({
-          logo: null,
-          name: "",
-          symbol: "",
-          network: "",
-          projectInPresale: false,
-          presaleStartDate: null,
-          presaleEndDate: null,
-          launchDateKnown: false,
-          launchDate: null,
-          address: "",
-          description: "",
-          website: "",
-          telegram: "",
-          twitter: "",
-          discord: "",
-          email: "",
-          telegramContact: "",
-          marketCapUsd: null,
-          hours24: "",
-        });
-
-        console.log("hello6: " + newCoin);
-        alert(
-          "Coin added successfully! \nThe coin will be reviewed and added to the list in 2-3 business days."
-        );
-      } else {
-        // If response doesn't contain data, show error alert
-        alert("No data found for the provided address.");
       }
+      console.log("hello4: " + newCoin);
+      await axios.post(`${base_url}`, newCoin, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      });
+      console.log("hello5: " + newCoin);
+      handleClose();
+
+      setNewCoin({
+        logo: null,
+        name: "",
+        symbol: "",
+        network: "",
+        projectInPresale: false,
+        presaleStartDate: null,
+        presaleEndDate: null,
+        launchDateKnown: false,
+        launchDate: null,
+        address: "",
+        description: "",
+        website: "",
+        telegram: "",
+        twitter: "",
+        discord: "",
+        email: "",
+        telegramContact: "",
+        marketCapUsd: null,
+        hours24: "",
+      });
+
+      console.log("hello6: " + newCoin);
+      alert(
+        "Coin added successfully! \nThe coin will be reviewed and added to the list in 2-3 business days."
+      );
+      // } else {
+      //   // If response doesn't contain data, show error alert
+      //   alert("No data found for the provided address.");
+      // }
     } catch (err) {
       console.log(err);
       alert("Failed to add coin. Please try again.");
@@ -199,7 +199,7 @@ const AddCoin = ({ handleClose }) => {
                         src={URL.createObjectURL(newCoin.logo)}
                         alt="Logo Preview"
                         style={{
-                          maxHeight: "140px",
+                          maxHeight: "126px",
                           maxWidth: "145px",
                           boxShadow: `0 2px 5px ${primary}`,
                           marginRight: "10px",
@@ -217,7 +217,7 @@ const AddCoin = ({ handleClose }) => {
                             flexDirection: "column",
                             justifyContent: "center",
                             maxWidth: "145px",
-                            height: "145px",
+                            height: "126px",
                             marginRight: "10px",
                           }}
                         >
@@ -301,6 +301,7 @@ const AddCoin = ({ handleClose }) => {
                     variant="filled"
                     fullWidth
                     required
+                    size="small"
                   />
                   <TextField
                     label="Symbol"
@@ -311,6 +312,7 @@ const AddCoin = ({ handleClose }) => {
                     variant="filled"
                     fullWidth
                     required
+                    size="small"
                     sx={{ marginTop: "30px" }}
                   />
                 </Grid>
@@ -324,10 +326,13 @@ const AddCoin = ({ handleClose }) => {
                 variant="filled"
                 fullWidth
                 required
+                size="small"
                 sx={{ marginTop: "15px" }}
               >
                 <MenuItem value="BSC">Binance (BSC)</MenuItem>
-                <MenuItem value="ETH">Ethereum (ETH)</MenuItem>
+                <MenuItem value="ETH">
+                  Ethereum (ETH)
+                </MenuItem>
                 <MenuItem value="MATIC">Polygon (MATIC)</MenuItem>
                 <MenuItem value="SOL">Solana (SOL)</MenuItem>
                 <MenuItem value="FTM">Fantom (FTM)</MenuItem>
@@ -344,12 +349,13 @@ const AddCoin = ({ handleClose }) => {
                     onChange={handlePresaleToggle}
                     name="projectInPresale"
                     color="primary"
+                    size="small"
                   />
                 }
                 sx={{ marginTop: "20px" }}
               />
               {newCoin.projectInPresale && (
-                <Grid container spacing={2}>
+                <Grid container spacing={2} sx={{ marginBottom: "-20px" }}>
                   <Grid item xs={12} md={6} lg={4}>
                     <LocalizationProvider dateAdapter={AdapterDayjs}>
                       <DatePicker
@@ -382,9 +388,10 @@ const AddCoin = ({ handleClose }) => {
                     onChange={handleLaunchDateToggle}
                     name="launchDateKnown"
                     color="primary"
+                    size="small"
                   />
                 }
-                sx={{ marginTop: "20px" }}
+                sx={{ marginTop: "10px" }}
               />
               {newCoin.launchDateKnown && (
                 <Grid container>

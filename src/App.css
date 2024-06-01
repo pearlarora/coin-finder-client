@@ -3,7 +3,6 @@
   padding: 0;
   box-sizing: border-box;
   scroll-behavior: smooth;
-  
 }
 
 a {
@@ -61,19 +60,19 @@ a {
   transform: scale(1.1);
 }
 .social-btns {
-  height: 40px;
+  height: 10px;
   margin: auto;
   text-align: center;
   position: fixed;
   /* right: 18px; */
   right: -10px;
-  bottom: 150px;
+  bottom: 200px;
 }
 .social-btns .btn {
   display: block;
   background-color: #fff;
-  width: 75px;
-  height: 50px;
+  width: 60px;
+  height: 35px;
   line-height: 50px;
   margin: 25px 8px;
   position: relative;
