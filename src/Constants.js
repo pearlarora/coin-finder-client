@@ -6,8 +6,8 @@ import adlong2 from "./Assets/adlong2.png";
 import adsq from "./Assets/adsq.png";
 import bitcoin from "./Assets/coinIcons/bitcoin.svg.png";
 
-// export const base_url = "https://coin-finder.onrender.com/";
-export const base_url = "https://localhost:3200/";
+export const base_url = "https://coin-finder.onrender.com/";
+// export const base_url = "https://localhost:3200/";
 export const website_name = "CoinFinder";
 export const pagination = 10;
 export const primary = "#4252cb";
