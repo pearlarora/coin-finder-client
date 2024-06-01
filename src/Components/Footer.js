@@ -80,7 +80,7 @@ const Footer = () => {
             }}
           >
             <CopyrightIcon />
-            &nbsp;2024 CoinSniper.XYZ | All Rights Reserved
+            &nbsp;2024 CoinFinder | All Rights Reserved
           </Typography>
         </Container>
       </Container>
