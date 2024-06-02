@@ -41,7 +41,7 @@ function LandingPage() {
           gap: "20px",
         }}
       >
-        <AdBanner />
+        {/* <AdBanner /> */}
         <AdGrid />
         <CoinTable
           heading="Promoted Coins"

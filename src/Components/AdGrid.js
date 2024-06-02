@@ -40,13 +40,9 @@ function AdGrid() {
   const isMobile = useMediaQuery((theme) => theme.breakpoints.down("sm"));
 
   return (
-    <div style={{ margin: "5px 0 10px 0" }}>
+    <div style={{ margin: "15px 0 10px 0" }}>
       <Container maxWidth="xl">
-        <ImageList
-          cols={isMobile ? 1 : 2}
-          gap={20}
-          sx={{ marginBottom: "10px" }}
-        >
+        <ImageList cols={isMobile ? 1 : 2} gap={20} marginBottom={"10px"}>
           {advertisementData.map((item, itemIndex) => (
             <ImageListItem
               key={itemIndex}
@@ -56,7 +52,12 @@ function AdGrid() {
             </ImageListItem>
           ))}
         </ImageList>
-        <Link href="#" underline="none" color={pinkShade}>
+        <Link
+          href="#"
+          underline="none"
+          color={pinkShade}
+          fontSize={isMobile ? "12px" : "16px"}
+        >
           Want your ad here? Click to Chat!
         </Link>
       </Container>

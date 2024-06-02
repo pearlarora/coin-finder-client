@@ -196,6 +196,7 @@ import {
   Divider,
   Drawer,
   IconButton,
+  Input,
   List,
   ListItem,
   ListItemButton,
@@ -224,7 +225,7 @@ const style = {
   top: "50%",
   left: "50%",
   transform: "translate(-50%, -50%)",
-  width: "85vw",
+  width: "80vw",
   bgcolor: "background.paper",
   backgroundColor: greyish,
   color: tertiary,
@@ -429,7 +430,7 @@ function Header(props) {
               gap: 2,
             }}
           >
-            <Button variant="contained" onClick={handleOpen}>
+            <Button variant="contained" onClick={handleOpen} size="small">
               Add Coin
             </Button>
             <Button
@@ -437,6 +438,7 @@ function Header(props) {
               color="tertiary"
               href="https://t.me/coinfinderccofficial"
               target="_blank"
+              size="small"
             >
               Advertise
             </Button>
@@ -487,9 +489,9 @@ function Header(props) {
               color: primary,
             }}
           >
-            <h1 style={{ textAlign: "center", fontWeight: "400" }}>
+            <h2 style={{ textAlign: "center", fontWeight: "400" }}>
               Add New Coin
-            </h1>
+            </h2>
           </div>
           <AddCoin handleClose={handleClose} />
         </Box>

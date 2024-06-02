@@ -186,7 +186,7 @@ const AddCoin = ({ handleClose }) => {
   };
 
   return (
-    <div style={{ paddingTop: "40px", overflowY: "auto", maxHeight: "80vh" }}>
+    <div style={{ paddingTop: "25px", overflowY: "auto", maxHeight: "80vh" }}>
       <Container maxWidth="xl">
         <form onSubmit={handleSubmit} action="post">
           <Grid container spacing={4}>
@@ -450,7 +450,7 @@ const AddCoin = ({ handleClose }) => {
                 fullWidth
                 required
                 size="small"
-                sx={{ marginTop: "30px" }}
+                sx={{ marginTop: "20px" }}
               />
               <TextField
                 label="Twitter"
@@ -460,7 +460,7 @@ const AddCoin = ({ handleClose }) => {
                 variant="filled"
                 fullWidth
                 size="small"
-                sx={{ marginTop: "30px" }}
+                sx={{ marginTop: "20px" }}
               />
               <TextField
                 label="Discord"
@@ -470,12 +470,12 @@ const AddCoin = ({ handleClose }) => {
                 variant="filled"
                 fullWidth
                 size="small"
-                sx={{ marginTop: "30px" }}
+                sx={{ marginTop: "20px" }}
               />
               <Divider
                 style={{
-                  marginTop: "35px",
-                  marginBottom: "-5px",
+                  marginTop: "15px",
+                  marginBottom: "-15px",
                 }}
               >
                 <Chip label="Contact Details" />
@@ -490,7 +490,7 @@ const AddCoin = ({ handleClose }) => {
                 fullWidth
                 required
                 size="small"
-                sx={{ marginTop: "30px" }}
+                sx={{ marginTop: "20px" }}
               />
               <TextField
                 label="Telegram Contact"
@@ -502,7 +502,7 @@ const AddCoin = ({ handleClose }) => {
                 fullWidth
                 required
                 size="small"
-                sx={{ marginTop: "30px" }}
+                sx={{ marginTop: "20px" }}
               />
               <div
                 style={{

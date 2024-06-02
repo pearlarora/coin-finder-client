@@ -14,6 +14,7 @@ import {
 } from "../Constants.js";
 import {
   Button,
+  Chip,
   Container,
   IconButton,
   LinearProgress,
@@ -27,6 +28,7 @@ import {
   TableContainer,
   TableHead,
   TableRow,
+  useMediaQuery,
 } from "@mui/material";
 // import Pagination from "@mui/material/Pagination";
 import { useNavigate } from "react-router-dom";
@@ -44,6 +46,17 @@ function CoinTable({ heading, coins, setCoins, loading }) {
   // console.log("here coins", coins);
   const promoted = heading === "Promoted Coins";
   const [itemsToShow, setItemsToShow] = useState(0);
+  const isMobile = useMediaQuery("(max-width:600px)");
+
+  const truncatedDate = (date) =>
+    date.length > 10 ? `${date.substring(0, 10)}` : date;
+  function isCurrentDateInRange(startDate, endDate) {
+    const currentDate = new Date();
+    const start = new Date(startDate);
+    const end = new Date(endDate);
+
+    return currentDate >= start && currentDate <= end;
+  }
 
   useEffect(() => {
     const initialRows = promoted ? coins.length + 2 : pagination;
@@ -140,20 +153,20 @@ function CoinTable({ heading, coins, setCoins, loading }) {
             style={{
               display: "flex",
               justifyContent: "space-between",
-              alignItems: "center",
-              padding: "15px 50px",
+              alignItems: "flex-end",
+              padding: "20px",
               fontWeight: "500",
               letterSpacing: "1.2px",
             }}
           >
-            <h2>{heading}</h2>
+            <h3>{heading}</h3>
             <Link
               href="/"
               style={{
                 color: pinkShade,
                 fontWeight: "600",
                 letterSpacing: "1px",
-                fontSize: "1.1rem",
+                fontSize: "0.8rem",
               }}
             >
               {promoted ? "Promote your coin!" : ""}
@@ -217,7 +230,7 @@ function CoinTable({ heading, coins, setCoins, loading }) {
                         sx={{
                           color: "white",
                           padding: "0 0 0 3vw",
-                          fontSize: "1.2rem",
+                          fontSize: "1rem",
                         }}
                       >
                         <div
@@ -231,8 +244,8 @@ function CoinTable({ heading, coins, setCoins, loading }) {
                           <img
                             src={coin.logo}
                             alt="Coin Icon"
-                            height={50}
-                            width={50}
+                            height={30}
+                            width={30}
                             style={{ borderRadius: "50%" }}
                           />
                           {/* {coin.logo && renderLogo(coin.logo)} */}
@@ -243,9 +256,9 @@ function CoinTable({ heading, coins, setCoins, loading }) {
                               flexDirection: "column",
                             }}
                           >
-                            <h4>{coin.name}</h4>
+                            <h5>{coin.name}</h5>
                             <p
-                              style={{ fontSize: "0.8rem", marginTop: "-5px" }}
+                              style={{ fontSize: "0.6rem", marginTop: "-4px" }}
                             >
                               {coin.symbol}
                             </p>
@@ -255,7 +268,7 @@ function CoinTable({ heading, coins, setCoins, loading }) {
                       <TableCell
                         sx={{
                           color: "white",
-                          fontSize: "1rem",
+                          fontSize: "0.8rem",
                         }}
                         align="center"
                       >
@@ -270,18 +283,28 @@ function CoinTable({ heading, coins, setCoins, loading }) {
                           <img
                             src={networkPath}
                             alt="Network Icon"
-                            height={35}
-                            width={35}
+                            height={30}
+                            width={30}
                             style={{ borderRadius: "50%" }}
                           />
                           <span>{coin.network}</span>
                         </div>
                       </TableCell>
                       <TableCell
-                        sx={{ color: "white", fontSize: "1rem" }}
+                        sx={{ color: "white", fontSize: "0.8rem" }}
                         align="center"
                       >
-                        {coin.marketCapUsd ? coin.marketCapUsd : "-"}
+                        {coin.marketCapUsd ? (
+                          coin.marketCapUsd
+                        ) : coin.projectInPresale &&
+                          isCurrentDateInRange(
+                            coin.presaleStartDate,
+                            coin.presaleEndDate
+                          ) ? (
+                          <Chip label="Chip Filled" />
+                        ) : (
+                          "-"
+                        )}
                       </TableCell>
                       <TableCell
                         sx={{
@@ -296,20 +319,28 @@ function CoinTable({ heading, coins, setCoins, loading }) {
                         }
                         align="center"
                       >
-                        <span>{coin.hours24 > 0 ? "+" : ""}</span>
-                        {coin.hours24}
-                        <span>%</span>
+                        {coin.hours24 ? (
+                          <div>
+                            <span>{coin.hours24 > 0 ? "+" : ""}</span>
+                            {coin.hours24}
+                            <span>%</span>
+                          </div>
+                        ) : (
+                          <></>
+                        )}
                       </TableCell>
                       <TableCell
-                        sx={{ color: "white", fontSize: "1rem" }}
+                        sx={{ color: "white", fontSize: "0.8rem" }}
                         align="center"
                       >
-                        {coin.launchDateKnown ? coin.launchDate : "-"}
+                        {coin.launchDateKnown
+                          ? truncatedDate(coin.launchDate)
+                          : "-"}
                       </TableCell>
                       <TableCell
                         sx={{
                           color: "white",
-                          fontSize: "1rem",
+                          fontSize: "0.8rem",
                           fontWeight: "500",
                         }}
                         align="center"

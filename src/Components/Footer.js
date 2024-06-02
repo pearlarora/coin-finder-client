@@ -1,4 +1,4 @@
-import { Container, Typography, AppBar } from "@mui/material";
+import { Container, Typography, AppBar, useMediaQuery } from "@mui/material";
 import CopyrightIcon from "@mui/icons-material/Copyright.js";
 import React from "react";
 import { useNavigate } from "react-router-dom";
@@ -13,6 +13,7 @@ import { websiteLogo } from "../Constants.js";
 
 const Footer = () => {
   const navigate = useNavigate();
+  const isMobile = useMediaQuery("(max-width:600px)");
 
   return (
     <div
@@ -57,7 +58,9 @@ const Footer = () => {
               color: darker,
             }}
           >
-            Terms & Conditions &nbsp; &nbsp; Privacy Policy
+            <span>Terms & Conditions</span>
+            {isMobile ? <br /> : <span> &nbsp; &nbsp; </span>}
+            <span>Privacy Policy</span>
           </Typography>
         </Container>
         <Container
