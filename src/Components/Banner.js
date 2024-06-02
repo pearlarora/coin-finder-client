@@ -199,7 +199,6 @@ import CopyText from "./CopyText";
 import LanguageIcon from "@mui/icons-material/Language";
 import TelegramIcon from "@mui/icons-material/Telegram";
 import TwitterIcon from "@mui/icons-material/Twitter";
-import Box from "@mui/material/Box"; // Import Box for adSquare
 
 function Banner({ coin }) {
   const truncatedDate = (date) =>
@@ -235,16 +234,16 @@ function Banner({ coin }) {
         }}
       >
         <Grid container spacing={2}>
-          <Grid item xs={12} style={{ textAlign: "center" }}>
+          <Grid item xs={12} sm={4} md={2.5} style={{ textAlign: "center" }}>
             <img
               src={coin.logo}
               alt="Coin Icon"
-              height="170rem"
-              width="170rem"
+              height="150rem"
+              width="150rem"
               style={{ borderRadius: "50%" }}
             />
           </Grid>
-          <Grid item xs={12}>
+          <Grid item xs={12} sm={8} md={6}>
             <div>
               <span style={{ fontSize: "1.3rem" }}>
                 <b>{coin.name} |</b>
@@ -258,14 +257,14 @@ function Banner({ coin }) {
                 gap: "10px",
                 backgroundColor: tertiary,
                 padding: 8,
-                margin: "15px 0",
+                margin: "10px 0",
                 borderRadius: "20px",
               }}
             >
               <img
                 src={networkPath}
                 alt="Network Icon"
-                style={{ width: 30, height: 30, borderRadius: "50%" }}
+                style={{ width: 20, height: 20, borderRadius: "50%" }}
               />
               <p>{coin.network}:</p>
               <CopyText text={coin.address} />
@@ -282,33 +281,33 @@ function Banner({ coin }) {
             >
               <Button
                 variant="contained"
-                size="large"
+                size="small"
                 href={formatUrl(coin.website)}
                 target="_blank"
               >
-                <LanguageIcon />
+                <LanguageIcon fontSize="small" />
               </Button>
               <Button
                 variant="contained"
-                size="large"
+                size="small"
                 href={formatUrl(coin.telegram)}
                 target="_blank"
               >
-                <TelegramIcon />
+                <TelegramIcon fontSize="small" />
               </Button>
               {coin.twitter && (
                 <Button
                   variant="contained"
-                  size="large"
+                  size="small"
                   href={formatUrl(coin.twitter)}
                   target="_blank"
                 >
-                  <TwitterIcon />
+                  <TwitterIcon fontSize="small" />
                 </Button>
               )}
             </div>
           </Grid>
-          <Grid item xs={12}>
+          <Grid item xs={12} sm={12} md={3.5}>
             {coin.projectInPresale && (
               <div>
                 <h3 style={{ color: primary, marginBottom: 10 }}>
@@ -328,14 +327,6 @@ function Banner({ coin }) {
                 <p>{truncatedDate(coin.launchDate)}</p>
               </div>
             )}
-          </Grid>
-          <Grid item xs={12} style={{ textAlign: "center" }}>
-            <Box
-              component="img"
-              src={adSquare}
-              alt="Ad Square"
-              sx={{ width: "100%", maxWidth: "300px", marginTop: 2 }}
-            />
           </Grid>
         </Grid>
       </Container>

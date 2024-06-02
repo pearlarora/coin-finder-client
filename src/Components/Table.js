@@ -154,7 +154,7 @@ function CoinTable({ heading, coins, setCoins, loading }) {
               display: "flex",
               justifyContent: "space-between",
               alignItems: "flex-end",
-              padding: "20px",
+              padding: "10px 20px",
               fontWeight: "500",
               letterSpacing: "1.2px",
             }}
@@ -180,7 +180,7 @@ function CoinTable({ heading, coins, setCoins, loading }) {
                 sx={{
                   backgroundColor: translucent,
                   borderBottom: "2px solid #000",
-                  height: "35px",
+                  height: "25px",
                 }}
               >
                 <TableRow>
@@ -204,7 +204,7 @@ function CoinTable({ heading, coins, setCoins, loading }) {
                   ))}
                 </TableRow>
               </TableHead>
-              <TableBody height="30px">
+              <TableBody height="22px">
                 {sortedCoins.slice(0, itemsToShow).map((coin, index) => {
                   // const logoPath = `../Assets/coinIcons/${coin.logo}`;
                   // console.log("Coin: " + coin.network);
@@ -244,8 +244,8 @@ function CoinTable({ heading, coins, setCoins, loading }) {
                           <img
                             src={coin.logo}
                             alt="Coin Icon"
-                            height={25}
-                            width={25}
+                            height={28}
+                            width={28}
                             style={{ borderRadius: "50%" }}
                           />
                           {/* {coin.logo && renderLogo(coin.logo)} */}

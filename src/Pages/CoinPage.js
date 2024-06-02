@@ -77,25 +77,25 @@ function CoinPage({ type }) {
     <Container maxWidth="xl">
       <AdBanner />
       <Grid container>
-        <Grid item xs={9.5}>
+        <Grid item md={9.5} xs={12}>
           <Banner coin={coin} />
         </Grid>
-        <Grid item xs={2.5}>
+        <Grid item md={2.5} xs={12}>
           <AdSquare />
         </Grid>
       </Grid>
 
       <div>
         <Grid container spacing={2}>
-          <Grid item xs={8}>
+          <Grid item md={8} xs={12}>
             <Container
               style={{
                 // height: "20rem",
                 backgroundColor: translucent,
                 borderRadius: 20,
                 marginTop: 60,
-                padding: 50,
-                fontSize: "1.2rem",
+                padding: 40,
+                fontSize: "1rem",
               }}
             >
               <h3>Description</h3>
@@ -110,8 +110,8 @@ function CoinPage({ type }) {
                   backgroundColor: translucent,
                   borderRadius: 20,
                   marginTop: 20,
-                  padding: 50,
-                  fontSize: "1.3rem",
+                  padding: 40,
+                  fontSize: "1.1rem",
                 }}
               >
                 <h4>
@@ -126,15 +126,15 @@ function CoinPage({ type }) {
               <></>
             )}
           </Grid>
-          <Grid item xs={4}>
+          <Grid item md={4} xs={12}>
             <Container
               style={{
                 height: "7rem",
                 backgroundColor: translucent,
                 borderRadius: 20,
                 marginTop: 60,
-                padding: 50,
-                fontSize: "1.2rem",
+                padding: 40,
+                fontSize: "1rem",
                 display: "flex",
                 alignItems: "center",
                 justifyContent: "space-between",
@@ -159,7 +159,7 @@ function CoinPage({ type }) {
                 borderRadius: 20,
                 marginTop: 18,
                 padding: 50,
-                fontSize: "1.2rem",
+                fontSize: "1rem",
                 display: "flex",
                 alignItems: "center",
                 justifyContent: "center",
