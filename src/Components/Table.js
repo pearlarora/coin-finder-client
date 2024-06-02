@@ -220,6 +220,7 @@ function CoinTable({ heading, coins, setCoins, loading }) {
                           backgroundColor: lighter,
                           cursor: "pointer",
                         },
+                        height: "50px",
                       }}
                       onClick={() => handleRowClick(coin._id)}
                     >
@@ -244,8 +245,8 @@ function CoinTable({ heading, coins, setCoins, loading }) {
                           <img
                             src={coin.logo}
                             alt="Coin Icon"
-                            height={30}
-                            width={30}
+                            height={25}
+                            width={25}
                             style={{ borderRadius: "50%" }}
                           />
                           {/* {coin.logo && renderLogo(coin.logo)} */}
@@ -257,11 +258,7 @@ function CoinTable({ heading, coins, setCoins, loading }) {
                             }}
                           >
                             <h5>{coin.name}</h5>
-                            <p
-                              style={{ fontSize: "0.6rem", marginTop: "-4px" }}
-                            >
-                              {coin.symbol}
-                            </p>
+                            <p style={{ fontSize: "0.6rem" }}>{coin.symbol}</p>
                           </div>
                         </div>
                       </TableCell>
@@ -283,8 +280,8 @@ function CoinTable({ heading, coins, setCoins, loading }) {
                           <img
                             src={networkPath}
                             alt="Network Icon"
-                            height={30}
-                            width={30}
+                            height={20}
+                            width={20}
                             style={{ borderRadius: "50%" }}
                           />
                           <span>{coin.network}</span>
@@ -308,7 +305,7 @@ function CoinTable({ heading, coins, setCoins, loading }) {
                       </TableCell>
                       <TableCell
                         sx={{
-                          fontSize: "1rem",
+                          fontSize: "0.8rem",
                           fontWeight: "600",
                           textShadow: "1px 1px 20px black",
                         }}
@@ -365,7 +362,7 @@ function CoinTable({ heading, coins, setCoins, loading }) {
                             handleVote(coin._id);
                           }} // Modified the Button component
                         >
-                          <RocketLaunchIcon />
+                          <RocketLaunchIcon size="small" />
                         </Button>
                       </TableCell>
                     </TableRow>
@@ -382,6 +379,7 @@ function CoinTable({ heading, coins, setCoins, loading }) {
               color="primary"
               onClick={handleSeeMore}
               style={{ margin: "20px" }}
+              size="small"
             >
               See More
             </Button>
