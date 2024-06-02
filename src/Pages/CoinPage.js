@@ -82,13 +82,9 @@ function CoinPage({ type }) {
         <Grid item md={10} xs={12}>
           <Banner coin={coin} />
         </Grid>
-        {isMobile ? (
-          <Grid item md={2} xs={12}>
-            <AdSquare />
-          </Grid>
-        ) : (
-          <></>
-        )}
+        <Grid item md={2} xs={12}>
+          {isMobile ? <AdSquare /> : <></>}
+        </Grid>
       </Grid>
 
       <div>
