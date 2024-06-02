@@ -201,6 +201,7 @@ function CoinTable({ heading, coins, setCoins, loading }) {
                           zIndex: head === "Coin" ? 1 : "auto",
                           backgroundColor:
                             head === "Coin" ? translucent : "inherit",
+                          borderRight: "1px solid #000",
                         }}
                         key={head}
                         align={head === "Coin" ? "left" : "center"}
@@ -241,6 +242,7 @@ function CoinTable({ heading, coins, setCoins, loading }) {
                             left: 0,
                             zIndex: 1,
                             backgroundColor: tertiary,
+                            borderRight: "1px solid #000",
                           }}
                         >
                           <div
