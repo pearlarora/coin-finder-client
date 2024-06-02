@@ -192,13 +192,6 @@ function CoinTable({ heading, coins, setCoins, loading }) {
                             ? { width: "25%", padding: "0 0 0 3vw" }
                             : {}
                         }
-                        borderRight={
-                          head === "Coin"
-                            ? isMobile
-                              ? "1px solid #000"
-                              : null
-                            : null
-                        }
                         sx={{
                           color: "white",
                           fontSize: "0.9rem",
@@ -248,7 +241,6 @@ function CoinTable({ heading, coins, setCoins, loading }) {
                             left: 0,
                             zIndex: 1,
                             backgroundColor: tertiary,
-                            borderRight: "1px solid #000",
                           }}
                         >
                           <div

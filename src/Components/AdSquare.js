@@ -15,7 +15,7 @@ function AdSquare() {
           style={{
             width: "12.5rem",
             objectFit: "cover",
-            marginTop: 40,
+            marginTop: 41,
           }}
         />
       </Container>
