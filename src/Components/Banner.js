@@ -256,7 +256,7 @@ function Banner({ coin }) {
                 alignItems: "center",
                 gap: "10px",
                 backgroundColor: tertiary,
-                padding: 3,
+                padding: "3px 7px",
                 margin: "12px 0",
                 borderRadius: "20px",
               }}
@@ -267,7 +267,7 @@ function Banner({ coin }) {
                 style={{ width: 20, height: 20, borderRadius: "50%" }}
               />
               <p>{coin.network}:</p>
-              <CopyText text={coin.address} />
+              <CopyText text={coin.address} fontSize="small" />
             </div>
             <div
               style={{

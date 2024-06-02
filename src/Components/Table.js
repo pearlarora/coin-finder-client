@@ -199,8 +199,8 @@ function CoinTable({ heading, coins, setCoins, loading }) {
                           position: head === "Coin" ? "sticky" : "static",
                           left: head === "Coin" ? 0 : "auto",
                           zIndex: head === "Coin" ? 1 : "auto",
-                          backgroundColor:
-                            head === "Coin" ? tertiary : "inherit",
+                          // backgroundColor:
+                          // head === "Coin" ? tertiary : "inherit",
                         }}
                         key={head}
                         align={head === "Coin" ? "left" : "center"}
@@ -240,7 +240,6 @@ function CoinTable({ heading, coins, setCoins, loading }) {
                             position: "sticky",
                             left: 0,
                             zIndex: 1,
-                            backgroundColor: tertiary,
                           }}
                         >
                           <div

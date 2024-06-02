@@ -9,7 +9,7 @@ const CoinSummary = ({ coin }) => {
   return (
     <Container
       style={{
-        height: "16rem",
+        height: "19rem",
         backgroundColor: translucent,
         borderRadius: 20,
         marginTop: 18,

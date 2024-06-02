@@ -14,6 +14,7 @@ import {
   TableCell,
   TableContainer,
   TableRow,
+  useMediaQuery,
 } from "@mui/material";
 import AdSquare from "../Components/AdSquare";
 import { darker, tertiary, translucent, base_url } from "../Constants";
@@ -27,6 +28,7 @@ import CoinNotFound from "../Components/CoinNotFound";
 
 function CoinPage({ type }) {
   const navigate = new useNavigate();
+  const isMobile = useMediaQuery("(max-width:600px)");
 
   const { id } = useParams(); // Get the coin ID from the URL
   const { address } = useParams(); // Get the address from the URL
@@ -77,12 +79,16 @@ function CoinPage({ type }) {
     <Container maxWidth="xl">
       <AdBanner />
       <Grid container>
-        <Grid item md={11} xs={12}>
+        <Grid item md={10} xs={12}>
           <Banner coin={coin} />
         </Grid>
-        <Grid item md={1} xs={12}>
-          <AdSquare />
-        </Grid>
+        {isMobile ? (
+          <Grid item md={2} xs={12}>
+            <AdSquare />
+          </Grid>
+        ) : (
+          <></>
+        )}
       </Grid>
 
       <div>
@@ -133,7 +139,7 @@ function CoinPage({ type }) {
                 backgroundColor: translucent,
                 borderRadius: 20,
                 marginTop: 60,
-                padding: 40,
+                padding: 50,
                 fontSize: "0.8rem",
                 display: "flex",
                 alignItems: "center",
@@ -163,7 +169,7 @@ function CoinPage({ type }) {
                 backgroundColor: translucent,
                 borderRadius: 20,
                 marginTop: 18,
-                padding: 50,
+                padding: 30,
                 fontSize: "1rem",
                 display: "flex",
                 alignItems: "center",
