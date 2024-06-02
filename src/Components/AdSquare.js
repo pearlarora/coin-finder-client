@@ -13,7 +13,7 @@ function AdSquare() {
           src={adSquare}
           alt="Square Ad"
           style={{
-            width: "12rem",
+            width: "12.5rem",
             objectFit: "cover",
             marginTop: 40,
           }}

@@ -208,7 +208,6 @@ function CoinTable({ heading, coins, setCoins, loading }) {
                           zIndex: head === "Coin" ? 1 : "auto",
                           backgroundColor:
                             head === "Coin" ? translucent : "inherit",
-                          borderRight: "1px solid #000",
                         }}
                         key={head}
                         align={head === "Coin" ? "left" : "center"}
@@ -241,7 +240,6 @@ function CoinTable({ heading, coins, setCoins, loading }) {
                     {console.log(coin)} */}
 
                         <TableCell
-                          borderRight={isMobile ? "1px solid #000" : null}
                           sx={{
                             color: "white",
                             padding: "0 0 0 3vw",
@@ -250,7 +248,7 @@ function CoinTable({ heading, coins, setCoins, loading }) {
                             left: 0,
                             zIndex: 1,
                             backgroundColor: tertiary,
-                            // borderRight: "1px solid #000",
+                            borderRight: "1px solid #000",
                           }}
                         >
                           <div
@@ -344,7 +342,7 @@ function CoinTable({ heading, coins, setCoins, loading }) {
                               <span>%</span>
                             </div>
                           ) : (
-                            <></>
+                            "-"
                           )}
                         </TableCell>
                         <TableCell

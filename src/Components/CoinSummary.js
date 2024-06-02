@@ -92,7 +92,7 @@ const CoinSummary = ({ coin }) => {
                 <span>%</span>
               </div>
             ) : (
-              <></>
+              "-"
             )}
           </p>
         </div>
