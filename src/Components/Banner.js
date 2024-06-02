@@ -229,7 +229,7 @@ function Banner({ coin }) {
           backgroundColor: translucent,
           borderRadius: 20,
           marginTop: 40,
-          padding: 10,
+          padding: 25,
           fontSize: "1rem",
         }}
       >
@@ -256,8 +256,8 @@ function Banner({ coin }) {
                 alignItems: "center",
                 gap: "10px",
                 backgroundColor: tertiary,
-                padding: 8,
-                margin: "10px 0",
+                padding: 3,
+                margin: "12px 0",
                 borderRadius: "20px",
               }}
             >

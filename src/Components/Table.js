@@ -175,200 +175,213 @@ function CoinTable({ heading, coins, setCoins, loading }) {
           {loading ? (
             <LinearProgress />
           ) : (
-            <Table>
-              <TableHead
-                sx={{
-                  backgroundColor: translucent,
-                  borderBottom: "2px solid #000",
-                  height: "25px",
-                }}
-              >
-                <TableRow>
-                  {coinTableHeader.map((head) => (
-                    <TableCell
-                      style={
-                        head === "Coin"
-                          ? { width: "25%", padding: "0 0 0 3vw" }
-                          : {}
-                      }
-                      sx={{
-                        color: "white",
-                        fontSize: "0.9rem",
-                        fontWeight: "bold",
-                      }}
-                      key={head}
-                      align={head === "Coin" ? "left" : "center"}
-                    >
-                      {head}
-                    </TableCell>
-                  ))}
-                </TableRow>
-              </TableHead>
-              <TableBody height="22px">
-                {sortedCoins.slice(0, itemsToShow).map((coin, index) => {
-                  // const logoPath = `../Assets/coinIcons/${coin.logo}`;
-                  // console.log("Coin: " + coin.network);
-                  // const logoPath = coinIcons[`./${coin.logo}`];
-                  const networkPath = networkIcons[`./${coin.network}.png`];
-                  // console.log("Network Path:", networkPath); // Debugging line to check path
-                  return (
-                    <TableRow
-                      key={index}
-                      sx={{
-                        borderBottom: "2px solid #000",
-                        ":hover": {
-                          backgroundColor: lighter,
-                          cursor: "pointer",
-                        },
-                      }}
-                      onClick={() => handleRowClick(coin._id)}
-                    >
-                      {/* {console.log(pagination)}
-                    {console.log(coin)} */}
-
+            <div style={{ overflowX: "auto" }}>
+              <Table style={{ minWidth: isMobile ? "650px" : "100%" }}>
+                <TableHead
+                  sx={{
+                    backgroundColor: translucent,
+                    borderBottom: "2px solid #000",
+                    height: "25px",
+                  }}
+                >
+                  <TableRow>
+                    {coinTableHeader.map((head) => (
                       <TableCell
+                        style={
+                          head === "Coin"
+                            ? { width: "25%", padding: "0 0 0 3vw" }
+                            : {}
+                        }
                         sx={{
                           color: "white",
-                          padding: "0 0 0 3vw",
-                          fontSize: "1rem",
+                          fontSize: "0.9rem",
+                          fontWeight: "bold",
+                          position: head === "Coin" ? "sticky" : "static",
+                          left: head === "Coin" ? 0 : "auto",
+                          zIndex: head === "Coin" ? 1 : "auto",
+                          backgroundColor:
+                            head === "Coin" ? tertiary : "inherit",
                         }}
+                        key={head}
+                        align={head === "Coin" ? "left" : "center"}
                       >
-                        <div
-                          style={{
-                            display: "flex",
-                            gap: "10px",
-                            alignItems: "center",
-                            // justifyContent: "center",
+                        {head}
+                      </TableCell>
+                    ))}
+                  </TableRow>
+                </TableHead>
+                <TableBody height="20px">
+                  {sortedCoins.slice(0, itemsToShow).map((coin, index) => {
+                    // const logoPath = `../Assets/coinIcons/${coin.logo}`;
+                    // console.log("Coin: " + coin.network);
+                    // const logoPath = coinIcons[`./${coin.logo}`];
+                    const networkPath = networkIcons[`./${coin.network}.png`];
+                    // console.log("Network Path:", networkPath); // Debugging line to check path
+                    return (
+                      <TableRow
+                        key={index}
+                        sx={{
+                          borderBottom: "2px solid #000",
+                          ":hover": {
+                            backgroundColor: lighter,
+                            cursor: "pointer",
+                          },
+                        }}
+                        onClick={() => handleRowClick(coin._id)}
+                      >
+                        {/* {console.log(pagination)}
+                    {console.log(coin)} */}
+
+                        <TableCell
+                          sx={{
+                            color: "white",
+                            padding: "0 0 0 3vw",
+                            fontSize: "1rem",
+                            position: "sticky",
+                            left: 0,
+                            zIndex: 1,
+                            backgroundColor: tertiary,
                           }}
                         >
-                          <img
-                            src={coin.logo}
-                            alt="Coin Icon"
-                            height={28}
-                            width={28}
-                            style={{ borderRadius: "50%" }}
-                          />
-                          {/* {coin.logo && renderLogo(coin.logo)} */}
-
                           <div
                             style={{
                               display: "flex",
-                              flexDirection: "column",
+                              gap: "10px",
+                              alignItems: "center",
+                              // justifyContent: "center",
                             }}
                           >
-                            <h5>{coin.name}</h5>
-                            <p style={{ fontSize: "0.6rem" }}>{coin.symbol}</p>
+                            <img
+                              src={coin.logo}
+                              alt="Coin Icon"
+                              height={30}
+                              width={30}
+                              style={{ borderRadius: "50%" }}
+                            />
+                            {/* {coin.logo && renderLogo(coin.logo)} */}
+
+                            <div
+                              style={{
+                                display: "flex",
+                                flexDirection: "column",
+                              }}
+                            >
+                              <h5>{coin.name}</h5>
+                              <p style={{ fontSize: "0.6rem" }}>
+                                {coin.symbol}
+                              </p>
+                            </div>
                           </div>
-                        </div>
-                      </TableCell>
-                      <TableCell
-                        sx={{
-                          color: "white",
-                          fontSize: "0.8rem",
-                        }}
-                        align="center"
-                      >
-                        <div
-                          style={{
-                            display: "flex",
-                            gap: "10px",
-                            alignItems: "center",
-                            justifyContent: "center",
+                        </TableCell>
+                        <TableCell
+                          sx={{
+                            color: "white",
+                            fontSize: "0.8rem",
                           }}
+                          align="center"
                         >
-                          <img
-                            src={networkPath}
-                            alt="Network Icon"
-                            height={20}
-                            width={20}
-                            style={{ borderRadius: "50%" }}
-                          />
-                          <span>{coin.network}</span>
-                        </div>
-                      </TableCell>
-                      <TableCell
-                        sx={{ color: "white", fontSize: "0.8rem" }}
-                        align="center"
-                      >
-                        {coin.marketCapUsd ? (
-                          coin.marketCapUsd
-                        ) : coin.projectInPresale &&
-                          isCurrentDateInRange(
-                            coin.presaleStartDate,
-                            coin.presaleEndDate
-                          ) ? (
-                          <Chip label="Chip Filled" />
-                        ) : (
-                          "-"
-                        )}
-                      </TableCell>
-                      <TableCell
-                        sx={{
-                          fontSize: "0.8rem",
-                          fontWeight: "600",
-                          textShadow: "1px 1px 20px black",
-                        }}
-                        style={
-                          coin.hours24 > 0
-                            ? { color: "green" }
-                            : { color: "red" }
-                        }
-                        align="center"
-                      >
-                        {coin.hours24 ? (
-                          <div>
-                            <span>{coin.hours24 > 0 ? "+" : ""}</span>
-                            {coin.hours24}
-                            <span>%</span>
+                          <div
+                            style={{
+                              display: "flex",
+                              gap: "10px",
+                              alignItems: "center",
+                              justifyContent: "center",
+                            }}
+                          >
+                            <img
+                              src={networkPath}
+                              alt="Network Icon"
+                              height={20}
+                              width={20}
+                              style={{ borderRadius: "50%" }}
+                            />
+                            <span>{coin.network}</span>
                           </div>
-                        ) : (
-                          <></>
-                        )}
-                      </TableCell>
-                      <TableCell
-                        sx={{ color: "white", fontSize: "0.8rem" }}
-                        align="center"
-                      >
-                        {coin.launchDateKnown
-                          ? truncatedDate(coin.launchDate)
-                          : "-"}
-                      </TableCell>
-                      <TableCell
-                        sx={{
-                          color: "white",
-                          fontSize: "0.8rem",
-                          fontWeight: "500",
-                        }}
-                        align="center"
-                      >
-                        {coin.vote}
-                      </TableCell>
-                      <TableCell align="center">
-                        {/* <Button
+                        </TableCell>
+                        <TableCell
+                          sx={{ color: "white", fontSize: "0.8rem" }}
+                          align="center"
+                        >
+                          {coin.marketCapUsd ? (
+                            coin.marketCapUsd
+                          ) : coin.projectInPresale &&
+                            isCurrentDateInRange(
+                              coin.presaleStartDate,
+                              coin.presaleEndDate
+                            ) ? (
+                            <Chip label="Chip Filled" />
+                          ) : (
+                            "-"
+                          )}
+                        </TableCell>
+                        <TableCell
+                          sx={{
+                            fontSize: "0.8rem",
+                            fontWeight: "600",
+                            textShadow: "1px 1px 20px black",
+                          }}
+                          style={
+                            coin.hours24 > 0
+                              ? { color: "green" }
+                              : { color: "red" }
+                          }
+                          align="center"
+                        >
+                          {coin.hours24 ? (
+                            <div>
+                              <span>{coin.hours24 > 0 ? "+" : ""}</span>
+                              {coin.hours24}
+                              <span>%</span>
+                            </div>
+                          ) : (
+                            <></>
+                          )}
+                        </TableCell>
+                        <TableCell
+                          sx={{ color: "white", fontSize: "0.8rem" }}
+                          align="center"
+                        >
+                          {coin.launchDateKnown
+                            ? truncatedDate(coin.launchDate)
+                            : "-"}
+                        </TableCell>
+                        <TableCell
+                          sx={{
+                            color: "white",
+                            fontSize: "0.8rem",
+                            fontWeight: "500",
+                          }}
+                          align="center"
+                        >
+                          {coin.vote}
+                        </TableCell>
+                        <TableCell align="center">
+                          {/* <Button
                         variant="contained"
                         size="small"
                         // sx={{ backgroundColor: secondary }}
                       > */}
-                        {/* <RocketLaunchIcon /> */}
-                        {/* <RocketLaunchTwoToneIcon /> */}
-                        {/* &nbsp;{coin.votes} */}
-                        {/* </Button> */}
-                        <Button
-                          variant="contained"
-                          size="small"
-                          onClick={(e) => {
-                            e.stopPropagation();
-                            handleVote(coin._id);
-                          }} // Modified the Button component
-                        >
-                          <RocketLaunchIcon fontSize="small" />
-                        </Button>
-                      </TableCell>
-                    </TableRow>
-                  );
-                })}
-              </TableBody>
-            </Table>
+                          {/* <RocketLaunchIcon /> */}
+                          {/* <RocketLaunchTwoToneIcon /> */}
+                          {/* &nbsp;{coin.votes} */}
+                          {/* </Button> */}
+                          <Button
+                            variant="contained"
+                            size="small"
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              handleVote(coin._id);
+                            }} // Modified the Button component
+                          >
+                            <RocketLaunchIcon fontSize="small" />
+                          </Button>
+                        </TableCell>
+                      </TableRow>
+                    );
+                  })}
+                </TableBody>
+              </Table>
+            </div>
           )}
         </TableContainer>
         {!promoted && coins.length > itemsToShow ? (

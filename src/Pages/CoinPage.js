@@ -77,10 +77,10 @@ function CoinPage({ type }) {
     <Container maxWidth="xl">
       <AdBanner />
       <Grid container>
-        <Grid item md={9.5} xs={12}>
+        <Grid item md={11} xs={12}>
           <Banner coin={coin} />
         </Grid>
-        <Grid item md={2.5} xs={12}>
+        <Grid item md={1} xs={12}>
           <AdSquare />
         </Grid>
       </Grid>
@@ -129,12 +129,12 @@ function CoinPage({ type }) {
           <Grid item md={4} xs={12}>
             <Container
               style={{
-                height: "7rem",
+                height: "5rem",
                 backgroundColor: translucent,
                 borderRadius: 20,
                 marginTop: 60,
                 padding: 40,
-                fontSize: "1rem",
+                fontSize: "0.8rem",
                 display: "flex",
                 alignItems: "center",
                 justifyContent: "space-between",
@@ -145,8 +145,13 @@ function CoinPage({ type }) {
                 <p style={{ fontSize: "1rem", color: darker }}>Total Votes</p>
                 <h2>{coin.vote}</h2>
               </div>
-              <Button variant="contained" onClick={() => handleVote(coin._id)}>
-                <RocketLaunchIcon /> &nbsp; Vote for {coin.name}
+              <Button
+                size="small"
+                variant="contained"
+                onClick={() => handleVote(coin._id)}
+              >
+                <RocketLaunchIcon fontSize="small" /> &nbsp; Vote for{" "}
+                {coin.name}
               </Button>
             </Container>
 
@@ -154,7 +159,7 @@ function CoinPage({ type }) {
 
             <Container
               style={{
-                height: "6rem",
+                height: "4rem",
                 backgroundColor: translucent,
                 borderRadius: 20,
                 marginTop: 18,
@@ -166,8 +171,9 @@ function CoinPage({ type }) {
                 gap: 10,
               }}
             >
-              <Button variant="contained" size="large">
-                <TrendingUpIcon /> &nbsp; Promote your Coin Now!
+              <Button variant="contained" size="small">
+                <TrendingUpIcon fontSize="small" /> &nbsp; Promote your Coin
+                Now!
               </Button>
             </Container>
           </Grid>

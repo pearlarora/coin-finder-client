@@ -78,7 +78,7 @@ const Footer = () => {
               display: "flex",
               justifyContent: "center",
               alignItems: "center",
-              margin: "0  0 80px -40px",
+              margin: "0  0 40px -40px",
               color: darker,
             }}
           >

@@ -9,12 +9,12 @@ const CoinSummary = ({ coin }) => {
   return (
     <Container
       style={{
-        height: "20rem",
+        height: "16rem",
         backgroundColor: translucent,
         borderRadius: 20,
         marginTop: 18,
         padding: "35px 50px",
-        fontSize: "1.2rem",
+        fontSize: "0.8rem",
       }}
     >
       <div>
@@ -85,9 +85,15 @@ const CoinSummary = ({ coin }) => {
         >
           <p style={{ color: darker }}>24h%</p>
           <p style={coin.hours24 > 0 ? { color: "green" } : { color: "red" }}>
-            <span>{coin.hours24 > 0 ? "+" : ""}</span>
-            {coin.hours24 || "-"}
-            <span>%</span>
+            {coin.hours24 ? (
+              <div>
+                <span>{coin.hours24 > 0 ? "+" : ""}</span>
+                {coin.hours24}
+                <span>%</span>
+              </div>
+            ) : (
+              <></>
+            )}
           </p>
         </div>
       </div>
