@@ -192,7 +192,6 @@
 
 // export default Banner;
 
-
 import { Button, Container, Grid } from "@mui/material";
 import React from "react";
 import { adSquare, primary, tertiary, translucent } from "../Constants";
@@ -200,6 +199,7 @@ import CopyText from "./CopyText";
 import LanguageIcon from "@mui/icons-material/Language";
 import TelegramIcon from "@mui/icons-material/Telegram";
 import TwitterIcon from "@mui/icons-material/Twitter";
+import Box from "@mui/material/Box"; // Import Box for adSquare
 
 function Banner({ coin }) {
   const truncatedDate = (date) =>
@@ -229,24 +229,24 @@ function Banner({ coin }) {
         style={{
           backgroundColor: translucent,
           borderRadius: 20,
-          marginTop: 60,
-          padding: 20,
-          fontSize: "1.2rem",
+          marginTop: 40,
+          padding: 10,
+          fontSize: "1rem",
         }}
       >
         <Grid container spacing={2}>
-          <Grid item xs={12} sm={4} md={2.5} style={{ textAlign: "center" }}>
+          <Grid item xs={12} style={{ textAlign: "center" }}>
             <img
               src={coin.logo}
               alt="Coin Icon"
-              height="184rem"
-              width="184rem"
+              height="170rem"
+              width="170rem"
               style={{ borderRadius: "50%" }}
             />
           </Grid>
-          <Grid item xs={12} sm={8} md={6}>
+          <Grid item xs={12}>
             <div>
-              <span style={{ fontSize: "1.7rem" }}>
+              <span style={{ fontSize: "1.3rem" }}>
                 <b>{coin.name} |</b>
               </span>{" "}
               {coin.symbol}
@@ -275,7 +275,7 @@ function Banner({ coin }) {
                 display: "flex",
                 alignItems: "center",
                 gap: 10,
-                fontSize: "1rem",
+                fontSize: "0.8rem",
                 marginTop: 10,
                 flexWrap: "wrap",
               }}
@@ -308,7 +308,7 @@ function Banner({ coin }) {
               )}
             </div>
           </Grid>
-          <Grid item xs={12} sm={12} md={3.5}>
+          <Grid item xs={12}>
             {coin.projectInPresale && (
               <div>
                 <h3 style={{ color: primary, marginBottom: 10 }}>
@@ -328,6 +328,14 @@ function Banner({ coin }) {
                 <p>{truncatedDate(coin.launchDate)}</p>
               </div>
             )}
+          </Grid>
+          <Grid item xs={12} style={{ textAlign: "center" }}>
+            <Box
+              component="img"
+              src={adSquare}
+              alt="Ad Square"
+              sx={{ width: "100%", maxWidth: "300px", marginTop: 2 }}
+            />
           </Grid>
         </Grid>
       </Container>

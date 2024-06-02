@@ -204,7 +204,7 @@ function CoinTable({ heading, coins, setCoins, loading }) {
                   ))}
                 </TableRow>
               </TableHead>
-              <TableBody>
+              <TableBody height="30px">
                 {sortedCoins.slice(0, itemsToShow).map((coin, index) => {
                   // const logoPath = `../Assets/coinIcons/${coin.logo}`;
                   // console.log("Coin: " + coin.network);
@@ -220,7 +220,6 @@ function CoinTable({ heading, coins, setCoins, loading }) {
                           backgroundColor: lighter,
                           cursor: "pointer",
                         },
-                        height: "50px",
                       }}
                       onClick={() => handleRowClick(coin._id)}
                     >
@@ -362,7 +361,7 @@ function CoinTable({ heading, coins, setCoins, loading }) {
                             handleVote(coin._id);
                           }} // Modified the Button component
                         >
-                          <RocketLaunchIcon size="small" />
+                          <RocketLaunchIcon fontSize="small" />
                         </Button>
                       </TableCell>
                     </TableRow>
