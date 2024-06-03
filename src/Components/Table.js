@@ -312,7 +312,7 @@ function CoinTable({ heading, coins, setCoins, loading }) {
                             ) ? (
                             <Chip
                               label="Presale"
-                              color="#4caf50"
+                              color="success"
                               size="small"
                             />
                           ) : (
@@ -362,7 +362,7 @@ function CoinTable({ heading, coins, setCoins, loading }) {
                           align="center"
                         >
                           {coin.vote}
-                          <ArrowCircleUpIcon color="#4caf50" fontSize="small" />
+                          <ArrowCircleUpIcon color="success" fontSize="small" />
                         </TableCell>
                         <TableCell align="center">
                           {/* <Button
