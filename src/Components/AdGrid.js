@@ -53,7 +53,7 @@ function AdGrid() {
           ))}
         </ImageList>
         <Link
-          href="#"
+          href="https://t.me/coinfinderccofficial"
           underline="none"
           color={pinkShade}
           fontSize={isMobile ? "12px" : "16px"}

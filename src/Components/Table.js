@@ -33,6 +33,7 @@ import {
 // import Pagination from "@mui/material/Pagination";
 import { useNavigate } from "react-router-dom";
 import RocketLaunchIcon from "@mui/icons-material/RocketLaunch.js";
+import ArrowCircleUpIcon from "@mui/icons-material/ArrowCircleUp";
 import axios from "axios";
 // import coinIcons from "../Assets/coinIcons/";
 // import icon from "../Assets/coinIcons/2024-05-18T18:31:32.262Zyt.png";
@@ -161,7 +162,7 @@ function CoinTable({ heading, coins, setCoins, loading }) {
           >
             <h3>{heading}</h3>
             <Link
-              href="/"
+              href="https://t.me/coinfinderccofficial"
               style={{
                 color: pinkShade,
                 fontWeight: "600",
@@ -309,7 +310,11 @@ function CoinTable({ heading, coins, setCoins, loading }) {
                               coin.presaleStartDate,
                               coin.presaleEndDate
                             ) ? (
-                            <Chip label="Chip Filled" />
+                            <Chip
+                              label="Presale"
+                              color="success"
+                              size="small"
+                            />
                           ) : (
                             "-"
                           )}
@@ -343,17 +348,18 @@ function CoinTable({ heading, coins, setCoins, loading }) {
                         >
                           {coin.launchDateKnown
                             ? truncatedDate(coin.launchDate)
-                            : "-"}
+                            : "TBA"}
                         </TableCell>
                         <TableCell
                           sx={{
-                            color: "white",
+                            color: "success",
                             fontSize: "0.8rem",
                             fontWeight: "500",
                           }}
                           align="center"
                         >
                           {coin.vote}
+                          <ArrowCircleUpIcon color="success" fontSize="small" />
                         </TableCell>
                         <TableCell align="center">
                           {/* <Button
