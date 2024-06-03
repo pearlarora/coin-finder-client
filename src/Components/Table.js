@@ -11,7 +11,6 @@ import {
   tertiary,
   translucent,
   base_url,
-  greenShade,
 } from "../Constants.js";
 import {
   Button,
@@ -313,7 +312,7 @@ function CoinTable({ heading, coins, setCoins, loading }) {
                             ) ? (
                             <Chip
                               label="Presale"
-                              color={greenShade}
+                              color="#4caf50"
                               size="small"
                             />
                           ) : (
@@ -353,7 +352,7 @@ function CoinTable({ heading, coins, setCoins, loading }) {
                         </TableCell>
                         <TableCell
                           sx={{
-                            color: greenShade,
+                            color: "#4caf50",
                             fontSize: "0.8rem",
                             fontWeight: "500",
                             display: "flex",
@@ -363,10 +362,7 @@ function CoinTable({ heading, coins, setCoins, loading }) {
                           align="center"
                         >
                           {coin.vote}
-                          <ArrowCircleUpIcon
-                            color={greenShade}
-                            fontSize="small"
-                          />
+                          <ArrowCircleUpIcon color="#4caf50" fontSize="small" />
                         </TableCell>
                         <TableCell align="center">
                           {/* <Button
