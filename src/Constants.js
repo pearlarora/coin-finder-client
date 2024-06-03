@@ -20,6 +20,7 @@ export const translucent = "#121318";
 export const darker = "#c4c2c2";
 export const greyish = "#e0e0e0";
 export const pinkShade = "#FF66C3";
+export const greenShade = "#4caf50";
 
 export const advertisementData = [
   { img: ad1, title: "Advertisement1" },

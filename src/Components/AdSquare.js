@@ -1,23 +1,26 @@
 import { Container } from "@mui/material";
 import React from "react";
-import Carousel from "react-material-ui-carousel";
-import { adLongData, adSquare } from "../Constants.js";
-import NavigateNextIcon from "@mui/icons-material/NavigateNext.js";
-import NavigateBeforeIcon from "@mui/icons-material/NavigateBefore.js";
+import { adSquare } from "../Constants.js";
 
 function AdSquare() {
   return (
     <div>
       <Container>
-        <img
-          src={adSquare}
-          alt="Square Ad"
-          style={{
-            width: "12.5rem",
-            objectFit: "cover",
-            marginTop: 41,
-          }}
-        />
+        <a
+          href="https://www.icodrops.co"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <img
+            src={adSquare}
+            alt="Square Ad"
+            style={{
+              width: "12.5rem",
+              objectFit: "cover",
+              marginTop: 41,
+            }}
+          />
+        </a>
       </Container>
     </div>
   );
