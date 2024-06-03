@@ -354,9 +354,6 @@ function CoinTable({ heading, coins, setCoins, loading }) {
                             color: "#4caf50",
                             fontSize: "0.8rem",
                             fontWeight: "600",
-                            display: "flex",
-                            justifyContent: "center",
-                            alignItems: "center",
                           }}
                           align="center"
                         >
