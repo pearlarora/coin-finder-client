@@ -1,4 +1,3 @@
-// import Table from "@mui/joy/Table";
 import React, { useEffect, useState } from "react";
 import {
   coinTableHeader,
@@ -30,33 +29,26 @@ import {
   TableRow,
   useMediaQuery,
 } from "@mui/material";
-// import Pagination from "@mui/material/Pagination";
 import { useNavigate } from "react-router-dom";
 import RocketLaunchIcon from "@mui/icons-material/RocketLaunch.js";
 import axios from "axios";
-// import coinIcons from "../Assets/coinIcons/";
-// import icon from "../Assets/coinIcons/2024-05-18T18:31:32.262Zyt.png";
-// import RocketLaunchTwoToneIcon from "@mui/icons-material/RocketLaunchTwoTone";
-// import { KeyboardArrowLeft } from "@mui/icons-material";
-// import { CoinList } from "../Config/api";
-// import axios from "axios";
 
 function CoinTable({ heading, coins, setCoins, loading }) {
   const navigate = useNavigate();
-  // console.log("here coins", coins);
   const promoted = heading === "Promoted Coins";
   const [itemsToShow, setItemsToShow] = useState(0);
   const isMobile = useMediaQuery("(max-width:600px)");
 
   const truncatedDate = (date) =>
     date.length > 10 ? `${date.substring(0, 10)}` : date;
-  function isCurrentDateInRange(startDate, endDate) {
+
+  const isCurrentDateInRange = (startDate, endDate) => {
     const currentDate = new Date();
     const start = new Date(startDate);
     const end = new Date(endDate);
 
     return currentDate >= start && currentDate <= end;
-  }
+  };
 
   useEffect(() => {
     const initialRows = promoted ? coins.length + 2 : pagination;
@@ -73,56 +65,51 @@ function CoinTable({ heading, coins, setCoins, loading }) {
     return images;
   };
 
-  // const coinIcons = importAll(
-  //   require.context("../Assets/coinIcons", false, /\.(png|jpe?g|svg)$/)
-  // );
-
   const networkIcons = importAll(
     require.context("../Assets/networks", false, /\.(png|jpe?g|svg)$/)
   );
-
-  // const fetchLogo = async (logo) => {
-  //   try {
-  //     const logoRef = storage.ref(`logos/${logo}`);
-  //     const logoURL = await logoRef.getDownloadURL();
-  //     return logoURL;
-  //   } catch (error) {
-  //     console.error("Failed to fetch logo:", error);
-  //     return null;
-  //   }
-  // };
-
-  // // Display the logo image
-  // const renderLogo = async (logo) => {
-  //   const logoURL = await fetchLogo(logo);
-  //   return (
-  //     <img
-  //       src={logoURL}
-  //       alt="Coin Icon"
-  //       height={50}
-  //       width={50}
-  //       style={{ borderRadius: "50%" }}
-  //     />
-  //   );
-  // };
 
   const handleSeeMore = () => {
     setItemsToShow(itemsToShow + pagination);
   };
 
+  // Function to get the last vote time from localStorage
+  const getLastVoteTime = (coinId) => {
+    return localStorage.getItem(`lastVoteTime_${coinId}`);
+  };
+
+  // Function to set the current time as the last vote time in localStorage
+  const setLastVoteTime = (coinId) => {
+    localStorage.setItem(`lastVoteTime_${coinId}`, new Date().toISOString());
+  };
+
+  // Function to check if the user can vote based on the last vote time
+  const canVote = (coinId) => {
+    const lastVoteTime = getLastVoteTime(coinId);
+    if (!lastVoteTime) return true;
+
+    const oneHourAgo = new Date(Date.now() - 60 * 60 * 1000);
+    return new Date(lastVoteTime) < oneHourAgo;
+  };
+
   const handleVote = async (coinId) => {
+    if (!canVote(coinId)) {
+      alert("You can only vote once per hour.");
+      return;
+    }
+
     try {
       await axios.post(`${base_url}coins/${coinId}/vote`);
       const updatedCoins = coins.map((coin) => {
         if (coin._id === coinId) {
-          // Increment the vote count
           return { ...coin, vote: coin.vote + 1 };
         }
         return coin;
       });
       setCoins(updatedCoins);
+      setLastVoteTime(coinId); // Update the last vote time after voting
     } catch (error) {
-      console.error("Failed to toggle vote:", error);
+      console.error("Failed to vote:", error);
     }
   };
 
@@ -132,12 +119,6 @@ function CoinTable({ heading, coins, setCoins, loading }) {
 
   return (
     <div>
-      {/* <img
-        // src={`${coinIcons}/bitcoin.svg.png`}
-        src={coinIcons["./2024-05-18T18:31:32.262Zyt.png"]}
-        // src={`../Assets/coinIcons/2024-05-18T18:31:32.262Zyt.png`}
-        alt="alt text"
-      /> */}
       <Container maxWidth="xl" sx={{ overflowX: "hidden" }}>
         <TableContainer
           component={Paper}
@@ -200,7 +181,7 @@ function CoinTable({ heading, coins, setCoins, loading }) {
                           left: head === "Coin" ? 0 : "auto",
                           zIndex: head === "Coin" ? 1 : "auto",
                           backgroundColor:
-                            head === "Coin" ? translucent : "inherit",
+                            head === "Coin" ? tertiary : "inherit",
                         }}
                         key={head}
                         align={head === "Coin" ? "left" : "center"}
@@ -212,11 +193,7 @@ function CoinTable({ heading, coins, setCoins, loading }) {
                 </TableHead>
                 <TableBody height="20px">
                   {sortedCoins.slice(0, itemsToShow).map((coin, index) => {
-                    // const logoPath = `../Assets/coinIcons/${coin.logo}`;
-                    // console.log("Coin: " + coin.network);
-                    // const logoPath = coinIcons[`./${coin.logo}`];
                     const networkPath = networkIcons[`./${coin.network}.png`];
-                    // console.log("Network Path:", networkPath); // Debugging line to check path
                     return (
                       <TableRow
                         key={index}
@@ -229,9 +206,6 @@ function CoinTable({ heading, coins, setCoins, loading }) {
                         }}
                         onClick={() => handleRowClick(coin._id)}
                       >
-                        {/* {console.log(pagination)}
-                    {console.log(coin)} */}
-
                         <TableCell
                           sx={{
                             color: "white",
@@ -248,7 +222,6 @@ function CoinTable({ heading, coins, setCoins, loading }) {
                               display: "flex",
                               gap: "10px",
                               alignItems: "center",
-                              // justifyContent: "center",
                             }}
                           >
                             <img
@@ -258,8 +231,6 @@ function CoinTable({ heading, coins, setCoins, loading }) {
                               width={30}
                               style={{ borderRadius: "50%" }}
                             />
-                            {/* {coin.logo && renderLogo(coin.logo)} */}
-
                             <div
                               style={{
                                 display: "flex",
@@ -360,22 +331,13 @@ function CoinTable({ heading, coins, setCoins, loading }) {
                           {coin.vote}
                         </TableCell>
                         <TableCell align="center">
-                          {/* <Button
-                        variant="contained"
-                        size="small"
-                        // sx={{ backgroundColor: secondary }}
-                      > */}
-                          {/* <RocketLaunchIcon /> */}
-                          {/* <RocketLaunchTwoToneIcon /> */}
-                          {/* &nbsp;{coin.votes} */}
-                          {/* </Button> */}
                           <Button
                             variant="contained"
                             size="small"
                             onClick={(e) => {
                               e.stopPropagation();
                               handleVote(coin._id);
-                            }} // Modified the Button component
+                            }}
                           >
                             <RocketLaunchIcon fontSize="small" />
                           </Button>
