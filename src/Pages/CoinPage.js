@@ -65,10 +65,10 @@ function CoinPage({ type }) {
   const handleVote = async (coinId) => {
     const lastVoteTime = localStorage.getItem(`lastVoteTime-${coinId}`);
     const currentTime = new Date().getTime();
-    const oneHour = 60 * 60 * 1000;
+    const oneDay = 60 * 60 * 1000 * 24;
 
-    if (lastVoteTime && currentTime - lastVoteTime < oneHour) {
-      alert("You can only vote once per hour.");
+    if (lastVoteTime && currentTime - lastVoteTime < oneDay) {
+      alert("You can only vote once per day.");
       return;
     }
 

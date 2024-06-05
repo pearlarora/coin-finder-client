@@ -88,13 +88,13 @@ function CoinTable({ heading, coins, setCoins, loading }) {
     const lastVoteTime = getLastVoteTime(coinId);
     if (!lastVoteTime) return true;
 
-    const oneHourAgo = new Date(Date.now() - 60 * 60 * 1000);
-    return new Date(lastVoteTime) < oneHourAgo;
+    const oneDayAgo = new Date(Date.now() - 60 * 60 * 1000 * 24);
+    return new Date(lastVoteTime) < oneDayAgo;
   };
 
   const handleVote = async (coinId) => {
     if (!canVote(coinId)) {
-      alert("You can only vote once per hour.");
+      alert("You can only vote once per day.");
       return;
     }
 
