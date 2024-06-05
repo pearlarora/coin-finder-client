@@ -22,8 +22,8 @@ export const greyish = "#e0e0e0";
 export const pinkShade = "#FF66C3";
 
 export const advertisementData = [
-  { img: ad1, title: "Advertisement1" },
-  { img: ad2, title: "Advertisement2" },
+  { img: ad1, title: "Advertisement1", link: "https://bomeai.lol/" },
+  { img: ad2, title: "Advertisement2", link: "https://kingjuliana.com/" },
 ];
 export const adLongData = [
   { img: adlong1, title: "Advertisement1" },

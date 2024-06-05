@@ -63,13 +63,19 @@ function CoinPage({ type }) {
   }
 
   const handleVote = async (coinId) => {
+    const lastVoteTime = localStorage.getItem(`lastVoteTime-${coinId}`);
+    const currentTime = new Date().getTime();
+    const oneHour = 60 * 60 * 1000;
+
+    if (lastVoteTime && currentTime - lastVoteTime < oneHour) {
+      alert("You can only vote once per hour.");
+      return;
+    }
+
     try {
       await axios.post(`${base_url}coins/${coinId}/vote`);
-      if (coin._id === coinId) {
-        setCoin({ ...coin, vote: coin.vote + 1 });
-        return { ...coin, vote: coin.vote + 1 };
-      }
-      return coin;
+      setCoin({ ...coin, vote: coin.vote + 1 });
+      localStorage.setItem(`lastVoteTime-${coinId}`, currentTime);
     } catch (error) {
       console.error("Failed to toggle vote:", error);
     }

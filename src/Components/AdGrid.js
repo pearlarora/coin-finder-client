@@ -48,7 +48,9 @@ function AdGrid() {
               key={itemIndex}
               style={{ border: "2px solid #4252cb" }}
             >
-              <img src={item.img} alt={item.title} />
+              <a href={item.link} target="_blank" rel="noopener noreferrer">
+                <img src={item.img} alt={item.title} />
+              </a>
             </ImageListItem>
           ))}
         </ImageList>

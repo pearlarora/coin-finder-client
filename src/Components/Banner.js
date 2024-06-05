@@ -314,8 +314,10 @@ function Banner({ coin }) {
                   Project In Presale
                 </h3>
                 <p>
-                  {truncatedDate(coin.presaleStartDate)} &nbsp;To &nbsp;
-                  {truncatedDate(coin.presaleEndDate)}
+                  {coin.presaleStartDate &&
+                    truncatedDate(coin.presaleStartDate)}{" "}
+                  &nbsp;To &nbsp;
+                  {coin.presaleEndDate && truncatedDate(coin.presaleEndDate)}
                 </p>
               </div>
             )}
@@ -324,7 +326,7 @@ function Banner({ coin }) {
                 <h3 style={{ color: primary, marginTop: 20, marginBottom: 10 }}>
                   Launch Date
                 </h3>
-                <p>{truncatedDate(coin.launchDate)}</p>
+                <p>{coin.launchDate && truncatedDate(coin.launchDate)}</p>
               </div>
             )}
           </Grid>

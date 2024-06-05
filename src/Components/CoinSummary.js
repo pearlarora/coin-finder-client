@@ -32,7 +32,7 @@ const CoinSummary = ({ coin }) => {
         >
           <p style={{ color: darker }}>Presale Start Date</p>
           <p>
-            {coin.presaleStartDate ? truncatedDate(coin.presaleStartDate) : "-"}
+            {coin.presaleStartDate ? truncatedDate(coin.presaleStartDate) : "TBA"}
           </p>
         </div>
         <div
@@ -47,7 +47,7 @@ const CoinSummary = ({ coin }) => {
         >
           <p style={{ color: darker }}>Presale End Date</p>
           <p>
-            {coin.presaleEndDate ? truncatedDate(coin.presaleEndDate) : "-"}
+            {coin.presaleEndDate ? truncatedDate(coin.presaleEndDate) : "TBA"}
           </p>
         </div>
         <div
