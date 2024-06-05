@@ -28,7 +28,7 @@ function AdSquare() {
           href="https://t.me/coinfinderccofficial"
           underline="none"
           color={pinkShade}
-          fontSize={isMobile ? "12px" : "16px"}
+          fontSize={isMobile ? "10px" : "12px"}
         >
           Want your ad here? Click to Chat!
         </Link>

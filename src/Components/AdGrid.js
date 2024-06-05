@@ -46,10 +46,19 @@ function AdGrid() {
           {advertisementData.map((item, itemIndex) => (
             <ImageListItem
               key={itemIndex}
-              style={{ border: "2px solid #4252cb" }}
+              style={{ border: "2px solid #4252cb", overflow: "hidden" }}
             >
-              <a href={item.link} target="_blank" rel="noopener noreferrer">
-                <img src={item.img} alt={item.title} />
+              <a
+                href={item.link}
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{ display: "block" }}
+              >
+                <img
+                  src={item.img}
+                  alt={item.title}
+                  style={{ width: "100%", height: "100%", objectFit: "cover" }}
+                />
               </a>
             </ImageListItem>
           ))}
