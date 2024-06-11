@@ -127,7 +127,7 @@ function CoinPage({ type }) {
                   To view the Trading Chart for {coin.name}, please visit the
                   following link:
                 </h4>
-                <a href={coin.link} target="_blank" rel="noopener noreferrer">
+                <a href={coin.graph} target="_blank" rel="noopener noreferrer">
                   View {coin.name} Trading Chart
                 </a>
               </Container>
