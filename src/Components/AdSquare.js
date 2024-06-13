@@ -25,13 +25,15 @@ function AdSquare() {
           />
         </a>
         <br />
-        <a
-          href="https://t.me/coinfinderccofficial"
-          fontSize={isMobile ? "4px" : "6px"}
-        >
-          Want your ad here? Click to Chat!
-        </a>
       </Container>
+      <Link
+        href="https://t.me/coinfinderccofficial"
+        fontSize={isMobile ? "4px" : "6px"}
+        underline="none"
+        color={pinkShade}
+      >
+        Want your ad here? Click to Chat!
+      </Link>
     </div>
   );
 }
