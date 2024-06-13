@@ -25,15 +25,8 @@ function AdSquare() {
           />
         </a>
         <br />
+        <p>Advertisement: ICODrops</p>
       </Container>
-      <Link
-        href="https://t.me/coinfinderccofficial"
-        fontSize={isMobile ? "4px" : "6px"}
-        underline="none"
-        color={pinkShade}
-      >
-        Want your ad here? Click to Chat!
-      </Link>
     </div>
   );
 }
