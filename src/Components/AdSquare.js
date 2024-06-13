@@ -1,7 +1,6 @@
 import { Container, useMediaQuery } from "@mui/material";
 import React from "react";
-import { adSquare, pinkShade } from "../Constants.js";
-import { Link } from "react-router-dom";
+import { adSquare, primary } from "../Constants.js";
 
 function AdSquare() {
   const isMobile = useMediaQuery((theme) => theme.breakpoints.down("sm"));
@@ -25,7 +24,9 @@ function AdSquare() {
           />
         </a>
         <br />
-        <p>Advertisement: ICODrops</p>
+        <p style={{ fontSize: "8px", color: primary }}>
+          Advertisement: ICODrops
+        </p>
       </Container>
     </div>
   );
