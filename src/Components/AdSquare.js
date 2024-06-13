@@ -24,7 +24,7 @@ function AdSquare() {
           />
         </a>
         <br />
-        <p style={{ fontSize: "8px", color: primary }}>
+        <p style={{ fontSize: "12px", color: primary }}>
           Advertisement: ICODrops
         </p>
       </Container>
