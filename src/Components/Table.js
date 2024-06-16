@@ -85,7 +85,7 @@ function CoinTable({ heading, coins, setCoins, loading }) {
 
   // Function to check if the user can vote based on the last vote time
   const canVote = (coinId, userIp) => {
-    const whitelistedIps = ["152.58.93.216"]; // Replace with actual IP addresses
+    const whitelistedIps = ["152.58.93.216", "152.59.91.148"]; // Replace with actual IP addresses
 
     // Allow voting if the IP is in the whitelist
     if (whitelistedIps.includes(userIp)) {
