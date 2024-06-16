@@ -84,7 +84,14 @@ function CoinTable({ heading, coins, setCoins, loading }) {
   };
 
   // Function to check if the user can vote based on the last vote time
-  const canVote = (coinId) => {
+  const canVote = (coinId, userIp) => {
+    const whitelistedIps = ["192.168.31.159"]; // Replace with actual IP addresses
+
+    // Allow voting if the IP is in the whitelist
+    if (whitelistedIps.includes(userIp)) {
+      return true;
+    }
+
     const lastVoteTime = getLastVoteTime(coinId);
     if (!lastVoteTime) return true;
 
@@ -93,7 +100,10 @@ function CoinTable({ heading, coins, setCoins, loading }) {
   };
 
   const handleVote = async (coinId) => {
-    if (!canVote(coinId)) {
+    const { data } = await axios.get("https://api.ipify.org?format=json");
+    const userIp = data.ip;
+
+    if (!canVote(coinId, userIp)) {
       alert("You can only vote once per day.");
       return;
     }
