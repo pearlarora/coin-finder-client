@@ -152,7 +152,7 @@ function CoinTable({ heading, coins, setCoins, loading }) {
               display: "flex",
               justifyContent: "space-between",
               alignItems: "flex-end",
-              padding: "10px 20px",
+              padding: "10px 15px 10px 20px",
               fontWeight: "500",
               letterSpacing: "1.2px",
             }}
@@ -167,7 +167,7 @@ function CoinTable({ heading, coins, setCoins, loading }) {
                 fontSize: "0.8rem",
               }}
             >
-              {promoted ? "Promote your coin!" : ""}
+              {promoted ? (isMobile ? "Promote!" : "Promote your coin!") : ""}
             </Link>
           </div>
           {loading ? (

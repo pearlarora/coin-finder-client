@@ -390,7 +390,7 @@ function Header(props) {
                 alt={website_name}
                 style={{ height: "40px" }}
               />
-              &nbsp;{website_name}
+              {website_name}
             </Typography>
           </Box>
           <Box
