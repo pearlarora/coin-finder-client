@@ -37,7 +37,7 @@ const CoinSummary = ({ coin }) => {
 
   const calculateDateDifference = (inputDate) => {
     const input = new Date(inputDate);
-    const today = new Date().toISOString().split("T")[0];
+    const today = truncatedDate(new Date());
 
     const diffTime = input - today;
     const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
