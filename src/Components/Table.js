@@ -42,6 +42,51 @@ function CoinTable({ heading, coins, setCoins, loading }) {
   const truncatedDate = (date) =>
     date.length > 10 ? `${date.substring(0, 10)}` : date;
 
+  const formatDate = (inputDate) => {
+    // Create a Date object from the input date
+    const date = new Date(inputDate);
+
+    // Define an array of month names
+    const monthNames = [
+      "January",
+      "February",
+      "March",
+      "April",
+      "May",
+      "June",
+      "July",
+      "August",
+      "September",
+      "October",
+      "November",
+      "December",
+    ];
+
+    // Extract the day, month, and year from the date object
+    const day = date.getDate();
+    const month = monthNames[date.getMonth()];
+    const year = date.getFullYear();
+
+    // Format the date as "dd Month yyyy"
+    return `${day} ${month} ${year}`;
+  };
+
+  const calculateDateDifference = (inputDate) => {
+    const input = new Date(inputDate);
+    const today = new Date().toISOString().split("T")[0];
+
+    const diffTime = input - today;
+    const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+
+    if (diffDays === 0) {
+      return "Today";
+    } else if (diffDays > 0) {
+      return `${diffDays} days to go`;
+    } else {
+      return `${Math.abs(diffDays)} days ago`;
+    }
+  };
+
   const isCurrentDateInRange = (startDate, endDate) => {
     const currentDate = new Date();
     const start = new Date(startDate);
@@ -336,7 +381,9 @@ function CoinTable({ heading, coins, setCoins, loading }) {
                           align="center"
                         >
                           {coin.launchDateKnown
-                            ? truncatedDate(coin.launchDate)
+                            ? calculateDateDifference(
+                                truncatedDate(coin.launchDate)
+                              )
                             : "TBA"}
                         </TableCell>
                         <TableCell

@@ -6,6 +6,51 @@ const CoinSummary = ({ coin }) => {
   const truncatedDate = (date) =>
     date.length > 10 ? `${date.substring(0, 10)}` : date;
 
+  const formatDate = (inputDate) => {
+    // Create a Date object from the input date
+    const date = new Date(inputDate);
+
+    // Define an array of month names
+    const monthNames = [
+      "January",
+      "February",
+      "March",
+      "April",
+      "May",
+      "June",
+      "July",
+      "August",
+      "September",
+      "October",
+      "November",
+      "December",
+    ];
+
+    // Extract the day, month, and year from the date object
+    const day = date.getDate();
+    const month = monthNames[date.getMonth()];
+    const year = date.getFullYear();
+
+    // Format the date as "dd Month yyyy"
+    return `${day} ${month} ${year}`;
+  };
+
+  const calculateDateDifference = (inputDate) => {
+    const input = new Date(inputDate);
+    const today = new Date().toISOString().split("T")[0];
+
+    const diffTime = input - today;
+    const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+
+    if (diffDays === 0) {
+      return "Today";
+    } else if (diffDays > 0) {
+      return `${diffDays} days to go`;
+    } else {
+      return `${Math.abs(diffDays)} days ago`;
+    }
+  };
+
   return (
     <Container
       style={{
@@ -32,7 +77,9 @@ const CoinSummary = ({ coin }) => {
         >
           <p style={{ color: darker }}>Presale Start Date</p>
           <p>
-            {coin.presaleStartDate ? truncatedDate(coin.presaleStartDate) : "-"}
+            {coin.presaleStartDate
+              ? formatDate(truncatedDate(coin.presaleStartDate))
+              : "-"}
           </p>
         </div>
         <div
@@ -47,7 +94,9 @@ const CoinSummary = ({ coin }) => {
         >
           <p style={{ color: darker }}>Presale End Date</p>
           <p>
-            {coin.presaleEndDate ? truncatedDate(coin.presaleEndDate) : "-"}
+            {coin.presaleEndDate
+              ? formatDate(truncatedDate(coin.presaleEndDate))
+              : "-"}
           </p>
         </div>
         <div
@@ -61,7 +110,11 @@ const CoinSummary = ({ coin }) => {
           }}
         >
           <p style={{ color: darker }}>Launch Date</p>
-          <p>{coin.launchDate ? truncatedDate(coin.launchDate) : "TBA"}</p>
+          <p>
+            {coin.launchDate
+              ? calculateDateDifference(truncatedDate(coin.launchDate))
+              : "TBA"}
+          </p>
         </div>
         <div
           style={{
