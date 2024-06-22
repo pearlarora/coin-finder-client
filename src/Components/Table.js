@@ -42,35 +42,6 @@ function CoinTable({ heading, coins, setCoins, loading }) {
   const truncatedDate = (date) =>
     date.length > 10 ? `${date.substring(0, 10)}` : date;
 
-  const formatDate = (inputDate) => {
-    // Create a Date object from the input date
-    const date = new Date(inputDate);
-
-    // Define an array of month names
-    const monthNames = [
-      "January",
-      "February",
-      "March",
-      "April",
-      "May",
-      "June",
-      "July",
-      "August",
-      "September",
-      "October",
-      "November",
-      "December",
-    ];
-
-    // Extract the day, month, and year from the date object
-    const day = date.getDate();
-    const month = monthNames[date.getMonth()];
-    const year = date.getFullYear();
-
-    // Format the date as "dd Month yyyy"
-    return `${day} ${month} ${year}`;
-  };
-
   const calculateDateDifference = (inputDate) => {
     const input = new Date(inputDate);
     const today = truncatedDate(new Date());

@@ -204,6 +204,35 @@ function Banner({ coin }) {
   const truncatedDate = (date) =>
     date.length > 10 ? `${date.substring(0, 10)}` : date;
 
+  const formatDate = (inputDate) => {
+    // Create a Date object from the input date
+    const date = new Date(inputDate);
+
+    // Define an array of month names
+    const monthNames = [
+      "January",
+      "February",
+      "March",
+      "April",
+      "May",
+      "June",
+      "July",
+      "August",
+      "September",
+      "October",
+      "November",
+      "December",
+    ];
+
+    // Extract the day, month, and year from the date object
+    const day = date.getDate();
+    const month = monthNames[date.getMonth()];
+    const year = date.getFullYear();
+
+    // Format the date as "dd Month yyyy"
+    return `${day} ${month} ${year}`;
+  };
+
   const importAll = (r) => {
     let images = {};
     r.keys().forEach((key) => {
@@ -315,9 +344,10 @@ function Banner({ coin }) {
                 </h3>
                 <p>
                   {coin.presaleStartDate &&
-                    truncatedDate(coin.presaleStartDate)}{" "}
+                    formatDate(truncatedDate(coin.presaleStartDate))}{" "}
                   &nbsp;To &nbsp;
-                  {coin.presaleEndDate && truncatedDate(coin.presaleEndDate)}
+                  {coin.presaleEndDate &&
+                    formatDate(truncatedDate(coin.presaleEndDate))}
                 </p>
               </div>
             )}
@@ -326,7 +356,10 @@ function Banner({ coin }) {
                 <h3 style={{ color: primary, marginTop: 20, marginBottom: 10 }}>
                   Launch Date
                 </h3>
-                <p>{coin.launchDate && truncatedDate(coin.launchDate)}</p>
+                <p>
+                  {coin.launchDate &&
+                    formatDate(truncatedDate(coin.launchDate))}
+                </p>
               </div>
             )}
           </Grid>
