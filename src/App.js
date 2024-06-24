@@ -26,7 +26,7 @@ function App() {
             <Route path="/" element={<LandingPage />} />
             {/* <Route path="/" Component={Landingpage} exact /> */}
             <Route
-              path="/search/:searchQuery"
+              path="/search/:address"
               element={<CoinPage type="search" />}
             />
             <Route path="/coin/:id" element={<CoinPage type="select" />} />
