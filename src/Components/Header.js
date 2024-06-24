@@ -248,40 +248,40 @@ function Header(props) {
     setMobileOpen(!mobileOpen);
   };
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await fetch(
-          `https://api.geckoterminal.com/api/v2/search/pools?query=${searchQuery}`
-        );
-        const responseData = await response.json();
-        if (responseData && responseData.data && responseData.data.length > 0) {
-          const firstResult = responseData.data[0];
-          const address = firstResult.attributes?.address;
-          if (address) {
-            console.log(address);
-            setAddress(address);
-          } else {
-            alert("No matching data found");
-          }
-        } else {
-          alert("No matching data found");
-        }
-      } catch (error) {
-        console.error("Error fetching data:", error);
-        alert("Failed to search. Please try again.");
-      }
-    };
+  // useEffect(() => {
+  //   const fetchData = async () => {
+  //     try {
+  //       const response = await fetch(
+  //         `https://api.geckoterminal.com/api/v2/search/pools?query=${searchQuery}`
+  //       );
+  //       const responseData = await response.json();
+  //       if (responseData && responseData.data && responseData.data.length > 0) {
+  //         const firstResult = responseData.data[0];
+  //         const address = firstResult.attributes?.address;
+  //         if (address) {
+  //           console.log(address);
+  //           setAddress(address);
+  //         } else {
+  //           alert("No matching data found");
+  //         }
+  //       } else {
+  //         alert("No matching data found");
+  //       }
+  //     } catch (error) {
+  //       console.error("Error fetching data:", error);
+  //       alert("Failed to search. Please try again.");
+  //     }
+  //   };
 
-    if (searchQuery) {
-      fetchData();
-    }
-  }, [searchQuery]);
+  //   if (searchQuery) {
+  //     fetchData();
+  //   }
+  // }, [searchQuery]);
 
   const handleSearch = (e) => {
     e.preventDefault();
     if (searchQuery) {
-      navigate(`/search/${address}`);
+      navigate(`/search/${searchQuery}`);
     } else {
       alert("Please enter a search query.");
     }
