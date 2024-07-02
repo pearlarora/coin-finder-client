@@ -64,7 +64,7 @@ function AdGrid() {
           ))}
         </ImageList>
         <Link
-          href="https://t.me/coinfinderccofficial"
+          href="https://t.me/icodroper"
           underline="none"
           color={pinkShade}
           fontSize={isMobile ? "12px" : "16px"}

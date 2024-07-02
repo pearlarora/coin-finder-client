@@ -340,7 +340,7 @@ function Header(props) {
             fullWidth
             color="tertiary"
             component="a"
-            href="https://t.me/coinfinderccofficial"
+            href="https://t.me/icodroper"
             target="_blank"
             sx={{ margin: 1, color: "white" }}
           >
@@ -436,7 +436,7 @@ function Header(props) {
             <Button
               variant="contained"
               color="tertiary"
-              href="https://t.me/coinfinderccofficial"
+              href="https://t.me/icodroper"
               target="_blank"
               size="small"
             >

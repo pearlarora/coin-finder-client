@@ -175,7 +175,7 @@ function CoinTable({ heading, coins, setCoins, loading }) {
           >
             <h3>{heading}</h3>
             <Link
-              href="https://t.me/coinfinderccofficial"
+              href="https://t.me/icodroper"
               style={{
                 color: pinkShade,
                 fontWeight: "600",
