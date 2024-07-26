@@ -69,7 +69,7 @@ function CoinTable({ heading, coins, setCoins, loading }) {
   useEffect(() => {
     const initialRows = promoted ? coins.length + 2 : pagination;
     setItemsToShow(initialRows);
-  }, [coins, promoted]);
+  });
 
   const sortedCoins = coins.sort((a, b) => b.vote - a.vote);
 
