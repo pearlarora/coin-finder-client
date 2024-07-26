@@ -36,7 +36,9 @@ import axios from "axios";
 function CoinTable({ heading, coins, setCoins, loading }) {
   const navigate = useNavigate();
   const promoted = heading === "Promoted Coins";
-  const [itemsToShow, setItemsToShow] = useState(0);
+  const [itemsToShow, setItemsToShow] = useState(pagination);
+  const [promotedItemsToShow, setPromotedItemsToShow] = useState(pagination);
+
   const isMobile = useMediaQuery("(max-width:600px)");
 
   const truncatedDate = (date) =>
@@ -66,9 +68,17 @@ function CoinTable({ heading, coins, setCoins, loading }) {
     return currentDate >= start && currentDate <= end;
   };
 
+  // useEffect(() => {
+  //   const initialRows = promoted ? coins.length + 2 : pagination;
+  //   setItemsToShow(initialRows);
+  // }, [coins, promoted]);
+
   useEffect(() => {
-    const initialRows = promoted ? coins.length + 2 : pagination;
-    setItemsToShow(initialRows);
+    if (promoted) {
+      setPromotedItemsToShow(coins.length + 2);
+    } else {
+      setItemsToShow(pagination);
+    }
   }, [coins, promoted]);
 
   const sortedCoins = coins.sort((a, b) => b.vote - a.vote);
@@ -86,7 +96,12 @@ function CoinTable({ heading, coins, setCoins, loading }) {
   );
 
   const handleSeeMore = () => {
-    setItemsToShow((prevItemsToShow) => prevItemsToShow + pagination);
+    // setItemsToShow((prevItemsToShow) => prevItemsToShow + pagination);
+    if (promoted) {
+      setPromotedItemsToShow(promotedItemsToShow + pagination);
+    } else {
+      setItemsToShow(itemsToShow + pagination);
+    }
   };
 
   const getLastVoteTime = (coinId) => {
@@ -130,9 +145,6 @@ function CoinTable({ heading, coins, setCoins, loading }) {
         return coin;
       });
       setCoins(updatedCoins);
-      setItemsToShow((prevItemsToShow) =>
-        Math.max(prevItemsToShow, updatedCoins.length)
-      );
       setLastVoteTime(coinId);
     } catch (error) {
       console.error("Failed to vote:", error);
