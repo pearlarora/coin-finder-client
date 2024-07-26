@@ -36,9 +36,8 @@ import axios from "axios";
 function CoinTable({ heading, coins, setCoins, loading }) {
   const navigate = useNavigate();
   const promoted = heading === "Promoted Coins";
-  const [itemsToShow, setItemsToShow] = useState(pagination);
-  const [promotedItemsToShow, setPromotedItemsToShow] = useState(pagination);
-
+  const [itemsToShow, setItemsToShow] = useState(0);
+  const [seeMore, setSeeMore] = useState(0);
   const isMobile = useMediaQuery("(max-width:600px)");
 
   const truncatedDate = (date) =>
@@ -68,16 +67,12 @@ function CoinTable({ heading, coins, setCoins, loading }) {
     return currentDate >= start && currentDate <= end;
   };
 
-  // useEffect(() => {
-  //   const initialRows = promoted ? coins.length + 2 : pagination;
-  //   setItemsToShow(initialRows);
-  // }, [coins, promoted]);
-
   useEffect(() => {
-    if (promoted) {
-      setPromotedItemsToShow(coins.length + 2);
+    const initialRows = promoted ? coins.length + 2 : pagination;
+    if (seeMore > 0) {
+      setItemsToShow(seeMore);
     } else {
-      setItemsToShow(pagination);
+      setItemsToShow(initialRows);
     }
   }, [coins, promoted]);
 
@@ -96,12 +91,8 @@ function CoinTable({ heading, coins, setCoins, loading }) {
   );
 
   const handleSeeMore = () => {
-    // setItemsToShow((prevItemsToShow) => prevItemsToShow + pagination);
-    if (promoted) {
-      setPromotedItemsToShow(promotedItemsToShow + pagination);
-    } else {
-      setItemsToShow(itemsToShow + pagination);
-    }
+    setItemsToShow(itemsToShow + pagination);
+    setSeeMore(itemsToShow + pagination);
   };
 
   const getLastVoteTime = (coinId) => {
