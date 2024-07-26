@@ -37,6 +37,7 @@ function CoinTable({ heading, coins, setCoins, loading }) {
   const navigate = useNavigate();
   const promoted = heading === "Promoted Coins";
   const [itemsToShow, setItemsToShow] = useState(0);
+  const [seeMore, setSeeMore] = useState(0);
   const isMobile = useMediaQuery("(max-width:600px)");
 
   const truncatedDate = (date) =>
@@ -87,6 +88,7 @@ function CoinTable({ heading, coins, setCoins, loading }) {
 
   const handleSeeMore = () => {
     setItemsToShow(itemsToShow + pagination);
+    setSeeMore(itemsToShow + pagination);
   };
 
   const getLastVoteTime = (coinId) => {
@@ -130,15 +132,12 @@ function CoinTable({ heading, coins, setCoins, loading }) {
         return coin;
       });
       setCoins(updatedCoins);
+      setItemsToShow(seeMore);
       setLastVoteTime(coinId);
     } catch (error) {
       console.error("Failed to vote:", error);
     }
   };
-
-  useEffect(() => {
-    setItemsToShow((prev) => prev);
-  }, [itemsToShow]);
 
   const handleRowClick = (coinId) => {
     navigate(`/coin/${coinId}`);
