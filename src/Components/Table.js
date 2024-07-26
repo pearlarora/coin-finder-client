@@ -138,7 +138,7 @@ function CoinTable({ heading, coins, setCoins, loading }) {
 
   useEffect(() => {
     setItemsToShow((prev) => prev);
-  });
+  }, [itemsToShow]);
 
   const handleRowClick = (coinId) => {
     navigate(`/coin/${coinId}`);
