@@ -89,25 +89,15 @@ function CoinTable({ heading, coins, setCoins, loading }) {
     setItemsToShow(itemsToShow + pagination);
   };
 
-  // Function to get the last vote time from localStorage
   const getLastVoteTime = (coinId) => {
     return localStorage.getItem(`lastVoteTime_${coinId}`);
   };
 
-  // Function to set the current time as the last vote time in localStorage
   const setLastVoteTime = (coinId) => {
     localStorage.setItem(`lastVoteTime_${coinId}`, new Date().toISOString());
   };
 
-  // Function to check if the user can vote based on the last vote time
-  const canVote = (coinId, userIp) => {
-    // const whitelistedIps = ["152.58.93.216", "152.59.91.148"]; // Replace with actual IP addresses
-
-    // // Allow voting if the IP is in the whitelist
-    // if (whitelistedIps.includes(userIp)) {
-    //   return true;
-    // }
-
+  const canVote = (coinId) => {
     const lastVoteTime = getLastVoteTime(coinId);
     if (!lastVoteTime) return true;
 
@@ -140,11 +130,15 @@ function CoinTable({ heading, coins, setCoins, loading }) {
         return coin;
       });
       setCoins(updatedCoins);
-      setLastVoteTime(coinId); // Update the last vote time after voting
+      setLastVoteTime(coinId);
     } catch (error) {
       console.error("Failed to vote:", error);
     }
   };
+
+  useEffect(() => {
+    setItemsToShow((prev) => prev);
+  });
 
   const handleRowClick = (coinId) => {
     navigate(`/coin/${coinId}`);
