@@ -148,7 +148,11 @@ function CoinTable({ heading, coins, setCoins, loading }) {
 
   return (
     <div>
-      <Container maxWidth="xl" sx={{ overflowX: "hidden" }}>
+      <Container
+        maxWidth={isMobile ? false : "xl"}
+        disableGutters
+        sx={{ overflowX: "hidden" }}
+      >
         <TableContainer
           component={Paper}
           sx={{

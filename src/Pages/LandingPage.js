@@ -5,6 +5,7 @@ import AdGrid from "../Components/AdGrid.js";
 import AdBanner from "../Components/AdBanner.js";
 import axios from "axios";
 import { base_url } from "../Constants.js";
+import AdGridBottom from "../Components/AdGridBottom.js";
 
 function LandingPage() {
   const [promotedCoins, setPromotedCoins] = useState([]);
@@ -49,7 +50,7 @@ function LandingPage() {
           setCoins={setPromotedCoins}
           loading={loading}
         />
-        <AdGrid />
+        <AdGridBottom />
         <CoinTable
           heading="Coins"
           coins={coins}
