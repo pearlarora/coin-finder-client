@@ -1,5 +1,5 @@
 import logo from "./Assets/logo.png";
-import ad1 from "./Assets/ad1.jpeg";
+import ad1 from "./Assets/ad1.gif";
 import ad2 from "./Assets/ad2.gif";
 import ad3 from "./Assets/ad3.gif";
 import ad4 from "./Assets/ad4.jpeg";
@@ -24,7 +24,11 @@ export const greyish = "#e0e0e0";
 export const pinkShade = "#FF66C3";
 
 export const advertisementData = [
-  { img: ad1, title: "Advertisement1", link: "https://www.coinfinder.cc" },
+  {
+    img: ad1,
+    title: "Advertisement1",
+    link: "https://www.coinfinder.cc/coin/67f1192a113aa9acff4618ff",
+  },
   { img: ad2, title: "Advertisement2", link: "https://www.coinfinder.cc" },
 ];
 
