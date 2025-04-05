@@ -24,11 +24,7 @@ export const greyish = "#e0e0e0";
 export const pinkShade = "#FF66C3";
 
 export const advertisementData = [
-  {
-    img: ad1,
-    title: "Advertisement1",
-    link: "https://www.coinfinder.cc/coin/67f1192a113aa9acff4618ff",
-  },
+  { img: ad1, title: "Advertisement1", link: "https://pepex.fun/" },
   { img: ad2, title: "Advertisement2", link: "https://www.coinfinder.cc" },
 ];
 
